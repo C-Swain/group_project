@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS products CASCADE;
+
+CREATE TABLE products (
+  id SERIAL PRIMARY KEY NOT NULL,
+  item_id INTEGER REFERENCES items(id) ON DELETE CASCADE,
+  name VARCHAR(255),
+  description TEXT,
+  link VARCHAR(255)
+);
