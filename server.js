@@ -48,6 +48,44 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
+app.get("/login", (req, res) => {
+  const templateVars = { user: null };
+  res.render("login", templateVars);
+});
+
+
+app.get("/register", (req, res) => {
+  // here we check the cookies if you are logged in you are sent to URLS
+    const templateVars = { user: null };
+    res.render("register", templateVars);
+
+})
+
+// This sends registration to database
+app.post("/register", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  if (email === "" || password === "") {
+    return res.status(400).send("please fill out a valid email and password");
+  }
+})
+
+// use we have the log in working with cookies we can active this property currently just making the page
+app.get("/todo/new", (req, res) => {
+  // const userID = req.session.user_id;
+  // const loggedinUser = users[userID];
+  // const templateVars = { user: loggedinUser };
+  res.render("todo_new");
+})
+
+// space to post new todo item
+// app.post("/smarttodo", (req, res) => {
+//   const userID = req.session.user_id;
+//   const loggedinUser = users[userID]
+//
+// });
+
 app.get("/", (req, res) => {
   res.render("index");
 });
