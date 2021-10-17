@@ -26,7 +26,7 @@ const {
   deleteItem
 } = require('../database')
 
-const { addNewUser, generateRandomString, getUserByEmail, validateUser } = require("../helpers");
+
 router.use(express.urlencoded({ extended: true }));
 const cookieParser = require("cookie-parser");
 const cookieSession = require("cookie-session");
@@ -52,14 +52,17 @@ router.get("/login", (req, res) => {
 
 router.post('/login', (req, res) => {
   const user = req.body;
+
   getUserByEmail(user.email, db)
     .then(data => {
       // check if email exists
       if(!data.rows[0]) {
         res.send('register')
-      } else (
+      } else {
+        console.log(data.rows[0].id)
+         req.session.user_id = data.rows[0].id ;
         res.send('logged in successfully')
-      )
+      }
     })
 });
 
@@ -76,11 +79,20 @@ router.get("/register", (req, res) => {
 router.post("/register", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
+  const user = req.body;
 
-  if (email === "" || password === "") {
-    return res.status(400).send("please fill out a valid email and password");
-  }
+      if (email === "" || password === "") {
+      return res.status(400).send("please fill out a valid email and password");
+       }
+      addUser(user, db)
+      getUserByEmail(user.email, db)
+      .then (data => {
+       console.log(data.rows[0].id);
+       req.session.user_id = data.rows[0].id ;
+       return res.send('logged in successfully');
+      })
 })
+
 
 // use we have the log in working with cookies we can active this property currently just making the page
 router.get("/todo/new", (req, res) => {
