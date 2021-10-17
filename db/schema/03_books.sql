@@ -8,3 +8,5 @@ CREATE TABLE books (
   detail TEXT,
   rating SMALLINT
 );
+
+
