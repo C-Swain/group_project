@@ -26,6 +26,12 @@ const {
   deleteItem
 } = require('../database')
 
+const { addNewUser, generateRandomString, getUserByEmail, validateUser } = require("../helpers");
+router.use(express.urlencoded({ extended: true }));
+const cookieParser = require("cookie-parser");
+const cookieSession = require("cookie-session");
+
+
 module.exports = (db) => {
   router.get("/", (req, res) => {
     db.query(`SELECT * FROM books;`)
@@ -62,7 +68,7 @@ router.get("/register", (req, res) => {
   // here we check the cookies if you are logged in you are sent to URLS
     const templateVars = { user: null };
     res.render("register", templateVars);
-    
+
 
 })
 
