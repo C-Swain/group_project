@@ -7,10 +7,28 @@
 
 const express = require("express");
 const router = express.Router();
+const {
+  addUser,
+  getUserByEmail,
+  getUserById,
+  getItemsToWatchById,
+  getItemsToReadById,
+  getItemsToBuyById,
+  getPlacesToEatById,
+  getMovieItemById,
+  getRestaurantItemById,
+  getBookItemById,
+  getProductItemById,
+  addMovie,
+  addBook,
+  addRestaurant,
+  addProduct,
+  deleteItem
+} = require('../database')
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
+    db.query(`SELECT * FROM books;`)
       .then((data) => {
         const users = data.rows;
         res.json({ users });
@@ -26,11 +44,25 @@ router.get("/login", (req, res) => {
   res.render("login", templateVars);
 });
 
+router.post('/login', (req, res) => {
+  const user = req.body;
+  getUserByEmail(user.email, db)
+    .then(data => {
+      // check if email exists
+      if(!data.rows[0]) {
+        res.send('register')
+      } else (
+        res.send('logged in successfully')
+      )
+    })
+});
+
 
 router.get("/register", (req, res) => {
   // here we check the cookies if you are logged in you are sent to URLS
     const templateVars = { user: null };
     res.render("register", templateVars);
+    
 
 })
 
