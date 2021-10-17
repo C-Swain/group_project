@@ -62,6 +62,7 @@ router.get("/register", (req, res) => {
   // here we check the cookies if you are logged in you are sent to URLS
     const templateVars = { user: null };
     res.render("register", templateVars);
+    
 
 })
 
