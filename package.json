@@ -12,6 +12,7 @@
   "author": "Lighthouse Labs",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/storage": "^5.15.3",
     "bcrypt": "^5.0.1",
     "chalk": "^2.4.2",
     "cookie-parser": "^1.4.5",
