@@ -13,6 +13,8 @@ const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
 const db = new Pool(dbParams);
 db.connect();
+const cookieParser = require("cookie-parser");
+const cookieSession = require("cookie-session");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -32,6 +34,11 @@ app.use(
 );
 
 app.use(express.static("public"));
+app.use(cookieParser());
+app.use(cookieSession({
+  name: "session",
+  keys: ["I like secret keys!", "159243adfsafds 45481d"],
+}));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own

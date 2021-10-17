@@ -8,6 +8,12 @@
 const express = require("express");
 const router = express.Router();
 
+const { addNewUser, generateRandomString, getUserByEmail, validateUser } = require("../helpers");
+router.use(express.urlencoded({ extended: true }));
+const cookieParser = require("cookie-parser");
+const cookieSession = require("cookie-session");
+
+
 module.exports = (db) => {
   router.get("/", (req, res) => {
     db.query(`SELECT * FROM users;`)
@@ -25,6 +31,33 @@ router.get("/login", (req, res) => {
   const templateVars = { user: null };
   res.render("login", templateVars);
 });
+
+router.put("/api/users/login", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  console.log(email, password);
+
+
+  if (email === "" || password === "") {
+    return res.status(400).send("please fill out a valid email and password");
+  }
+  const result = validateUser(db, email, password);
+
+  if (result.error) {
+    res.send(result.error);
+  }
+  const userID = result.user.id;
+  req.session.user_id = userID;
+  return res.redirect("/");
+
+});
+
+//this logs out the User
+router.post("/logout", (req, res) => {
+  req.session = null;
+  res.redirect("/login");
+});
+
 
 
 router.get("/register", (req, res) => {
