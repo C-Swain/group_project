@@ -19,7 +19,7 @@ const cookieSession = require("cookie-session");
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM books;`)
+    db.query(`SELECT * FROM users;`)
       .then((data) => {
         const users = data.rows;
         res.json({ users });
