@@ -57,7 +57,9 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 
 app.get("/", (req, res) => {
-  res.render("index");
+
+   const templateVars = { db: db};
+   res.render("index", templateVars);
 });
 
 app.listen(PORT, () => {
