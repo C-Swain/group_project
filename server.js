@@ -15,6 +15,7 @@ const db = new Pool(dbParams);
 db.connect();
 const cookieParser = require("cookie-parser");
 const cookieSession = require("cookie-session");
+const {getPictures} = require("./database");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -55,11 +56,12 @@ app.use("/api/products", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-
 app.get("/", (req, res) => {
-
-   const templateVars = { db: db};
+getPictures(db, 5)
+.then(data => {console.log(data)
+   const templateVars = { data: data};
    res.render("index", templateVars);
+})
 });
 
 app.listen(PORT, () => {

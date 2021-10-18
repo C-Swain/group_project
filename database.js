@@ -88,6 +88,21 @@ const addProduct = function (values, db) {
   );
 };
 
+const getPictures = function(db, limit) {
+  return db.query(
+    `
+    SELECT image_url FROM products
+    ORDER BY RANDOM()
+    LIMIT $1 `,
+    [limit]
+  )
+  .then(data => {
+
+    if(data.rows.length) {
+      return data.rows;
+    }
+  });
+};
 
 
 //delete an item
@@ -101,6 +116,7 @@ WHERE item_id = ${itemId};
 
 module.exports = {
   addUser,
+  getPictures,
   getUserByEmail,
   getUserById,
   getItemsToWatchById,
