@@ -1,10 +1,3 @@
-/*
- * All routes for Users are defined here
- * Since this file is loaded in server.js into api/users,
- *   these routes are mounted onto /users
- * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
- */
-
 const express = require("express");
 const router = express.Router();
 const {
@@ -12,16 +5,8 @@ const {
   getUserByEmail,
   getUserById,
   getItemsToWatchById,
-  getItemsToReadById,
   getItemsToBuyById,
-  getPlacesToEatById,
-  getMovieItemById,
-  getRestaurantItemById,
-  getBookItemById,
   getProductItemById,
-  addMovie,
-  addBook,
-  addRestaurant,
   addProduct,
   deleteItem
 } = require('../database')
