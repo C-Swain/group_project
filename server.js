@@ -60,7 +60,7 @@ app.get("/", (req, res) => {
 
   let user = null;
    const templateVars = { 
-    db: db,
+
     user
   };
 
@@ -68,6 +68,12 @@ app.get("/", (req, res) => {
   res.render("index", templateVars);
 
 });
+// getPictures(db, 5)
+// .then(data => {console.log(data)
+//    const templateVars = { data: data};
+
+// })
+// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
