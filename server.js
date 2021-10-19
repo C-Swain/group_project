@@ -64,12 +64,9 @@ app.get("/", (req, res) => {
     user
   };
 
-  res.render("index", templateVars);
-// getPictures(db, 5)
-// .then(data => {console.log(data)
-//    const templateVars = { data: data};
 
-// })
+  res.render("index", templateVars);
+
 });
 
 app.listen(PORT, () => {
