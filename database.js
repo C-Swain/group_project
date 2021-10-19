@@ -120,7 +120,32 @@ const getProductById = function (product_id, db) {
   );
 };
 
+// Fetch all massages
+const getAllMessages = function (db) {
+  return db.query(
+    `
+    SELECT *
+    FROM texts
+    ORDER BY id DESC;
+    `
+  );
+};
 
+// Fetch all products between the minimum and maximum prices
+const filterByPrice = function(min, max, db) {
+  const queryParams = [
+    min,
+    max
+  ];
+  const queryString = `
+  SELECT *
+  FROM products
+  WHERE price <= $2 AND price >= $1;`;
+
+  return db.query(queryString, queryParams);
+};
+
+// Add a new product.
 const addProduct = function(product, db) {
   const queryString = `
   INSERT INTO products (
@@ -188,6 +213,8 @@ module.exports = {
   getAllProducts,
   getProductsByCategory,
   getProductById,
+  getAllMessages,
+  filterByPrice,
   addProduct,
   deleteProduct,
   updateProduct
