@@ -57,8 +57,11 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 
 app.get("/", (req, res) => {
-
-   const templateVars = { db: db};
+  let user = null;
+   const templateVars = { 
+    db: db,
+    user
+  };
    res.render("index", templateVars);
 });
 
