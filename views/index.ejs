@@ -2,48 +2,77 @@
 <html lang="en">
 
 <head>
-   <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <header><%- include('partials/_header') %></header>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-   
-  <title>Smart TODO</title>
+
+  <title>LightVintage</title>
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
-  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  
+
+ <!-- <img src="https://images.unsplash.com/photo-1624209190904-aca680ededc1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=793&q=80"></img>
+
+ <img src="https://www.timstoasters.com/wp-content/uploads/elementor/thumbs/T-40-Vista-Pic-1-oxlah1b8pz4rglekmuzj71wcidv10rxli206077zwo.jpg"></img>
+
+ <img src="https://cdn.shopify.com/s/files/1/2100/7939/t/16/assets/Peace-Sign-Toaster1.jpg?v=7416471242838776581"></img>
+
+ <img src="https://images.unsplash.com/photo-1526394931762-90052e97b376?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80"></img>
+
+ <img src="https://images.unsplash.com/photo-1616714107834-a00f7d6f8d72?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80"></img>
+
+ <img src="https://images.unsplash.com/photo-1518893883800-45cd0954574b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=734&q=80"></img>
+
+ <img src="https://images.unsplash.com/photo-1601854266103-c1dd42130633?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80"></img>
+
+ <img src="https://images.unsplash.com/photo-1497008323932-4f726e0f13f5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=880&q=80"></img>
+
+ <img src="https://images.unsplash.com/photo-1605858449475-b75c0578f316?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=735&q=80"></img>
+
+ <img src="https://images.unsplash.com/photo-1544896478-d5b709d413c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"></img>
+
+ <img src="https://images.unsplash.com/photo-1587750059638-e7e8c43b99fc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1169&q=80"></img>
+
+ <img src="https://images.unsplash.com/photo-1503650923300-dd2f6a007eaf?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1171&q=80"></img>
+
+ <img src="https://images.unsplash.com/photo-1596480002902-cfc644529d1f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=735&q=80"></img>
+
+ <img src="https://images.unsplash.com/photo-1581068503354-ac305d7cc399?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"></img>
+
+ <img src="https://images.unsplash.com/photo-1581327390677-215ca3876368?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1244&q=80"></img>
+
+ <img src="https://images.unsplash.com/photo-1525453689870-bfab0d1af50d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80"></img>
+
+ <img src="https://images.unsplash.com/photo-1558009250-d3d2229fdf28?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"></img>
+
+ <img src="https://images.unsplash.com/photo-1524668951403-d44b28200ce0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80"></img> -->
+
+
+
+ <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
 <body>
-
-  <!--header-->
-
-  <div class="card text-center">
-    <div class="card-header"></div>
-    <div class="card-body">
-
+  <div class="wrapper">
+    <header>
+    <div class="heading-text">
+      <h1>The <span>Light Vintage</span></h1>
+      <h2>you need today</h2>
     </div>
-
-  <div class="card-footer text-muted">
-
-    <h5 class="card-title">Welcome To Smart TODO List</h5>
-    <p class="card-text">
-      <!--<form method="" action="">-->
-        <a class="btn btn-primary" href="/login" role="button">Login</a>
-        <a class="btn btn-primary" href="/register" role="button">SignUp</a>
-
-      <!--</form>-->
-    </p>
-
+    </header>
+    <section class="results">
+      <!-- jquery here -->
+    </section>
   </div>
-
-</div>
-
+  
 <!-- Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- Boot -->

@@ -13,6 +13,9 @@ const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
 const db = new Pool(dbParams);
 db.connect();
+const cookieParser = require("cookie-parser");
+const cookieSession = require("cookie-session");
+const {getPictures} = require("./database");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -32,6 +35,11 @@ app.use(
 );
 
 app.use(express.static("public"));
+app.use(cookieParser());
+app.use(cookieSession({
+  name: "session",
+  keys: ["I like secret keys!", "159243adfsafds 45481d"],
+}));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -41,16 +49,27 @@ const widgetsRoutes = require("./routes/items");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
+app.use("/api/products", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-
 app.get("/", (req, res) => {
-  res.render("index");
+
+  let user = null;
+   const templateVars = { 
+    db: db,
+    user
+  };
+
+  res.render("index", templateVars);
+// getPictures(db, 5)
+// .then(data => {console.log(data)
+//    const templateVars = { data: data};
+
+// })
 });
 
 app.listen(PORT, () => {
