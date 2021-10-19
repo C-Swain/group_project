@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%=category%></title>
+</head>
+<body>
+<h2> Here is our Selection of Vintage <%=category%></h2>
+
+ <% for (item of data) { %>
+  <div>
+  <img src=<%=item.image_url%>></img>
+    <div>
+    <p class="product name"><%=item.name%> </p>
+    <p class="product description"><%=item.description%></p>
+    <p class="product price"> $ <%=item.price%></p>
+    <button class="producttext"type"button"> Send Message</button>
+    <button class="remove product"type"button">Delete Product</button>
+  </div>
+</div>
+
+<% } %>
+
+</body>
+</html>
