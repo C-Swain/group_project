@@ -109,6 +109,21 @@ const getProductsByCategory = function (cateory_id, db) {
   );
 };
 
+//gets product by categoryName
+const getProductsByCategoryName = function (category_name, db) {
+  return db.query(
+    `
+    SELECT products.* FROM products
+    JOIN categories ON categories.id = products.category_id
+    WHERE categories.name LIKE $1;
+    `,
+    [`${category_name}`]
+  )
+  .then((data) => {
+    return data.rows;
+  })
+};
+
 // Fetch product by id
 const getProductById = function (product_id, db) {
   return db.query(
@@ -227,6 +242,7 @@ module.exports = {
   getProductItemById,
   getAllProducts,
   getProductsByCategory,
+  getProductsByCategoryName,
   getProductById,
   getAllMessages,
   filterByPrice,

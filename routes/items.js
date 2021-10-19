@@ -7,6 +7,8 @@
 
 const express = require('express');
 const router  = express.Router();
+const { getProductsByCategoryName,
+ } = require('../database')
 
 // code that diplays api of products for trouble shooting
 module.exports = (db) => {
@@ -24,5 +26,28 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-  return router;
+
+
+ // this renders a page using the category indicated
+ router.get("/:category", (req, res) => {
+   const category =req.params.category;
+  // const userID = req.session.user_id;
+  //  const loggedinUser = users[userID];
+
+// we will have a function that  makes a sql query based on the category inputed in order to select only thoose items
+getProductsByCategoryName(category, db)
+.then(data => {
+
+  console.log('this',data)
+
+ const templateVars = {data ,category};
+  console.log(data)
+
+  res.render("category", templateVars);
+  });
+
+})
+
+return router
+
 };
