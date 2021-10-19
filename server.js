@@ -60,17 +60,18 @@ app.get("/", (req, res) => {
 
   let user = null;
    const templateVars = { 
-    db: db,
+
     user
   };
 
-getPictures(db, 5)
-.then(data => {console.log(data)
-   const templateVars = { data: data};
-
-   res.render("index", templateVars);
-})
+  res.render("index", templateVars);
 });
+// getPictures(db, 5)
+// .then(data => {console.log(data)
+//    const templateVars = { data: data};
+
+// })
+// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
