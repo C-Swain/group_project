@@ -131,7 +131,7 @@ const getAllMessages = function (db) {
   );
 };
 
-// Fetch all products between the minimum and maximum prices
+// Fetch all products between the minimum and maximum price
 const filterByPrice = function(min, max, db) {
   const queryParams = [
     min,
