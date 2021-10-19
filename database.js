@@ -98,14 +98,26 @@ const getAllProducts = function (db) {
   );
 };
 
-// Fetch products by category
-const getProductsByCategory = function (cateory_id, db) {
+// Fetch products by category id
+const getProductsByCategoryId = function (category_id, db) {
   return db.query(
     `
     SELECT * FROM products
     WHERE category_id = $1;
     `,
-    [`${cateory_id}`]
+    [`${category_id}`]
+  );
+};
+
+// Fetch products by category name
+const getProductsByCategoryName = function (category_name, db) {
+  return db.query(
+    `
+    SELECT products.* FROM products
+    JOIN categories ON categories.id = products.category_id
+    WHERE categories.name LIKE $1;
+    `,
+    [`${category_name}`]
   );
 };
 
@@ -226,7 +238,8 @@ module.exports = {
   getItemsToBuyById,
   getProductItemById,
   getAllProducts,
-  getProductsByCategory,
+  getProductsByCategoryId,
+  getProductsByCategoryName,
   getProductById,
   getAllMessages,
   filterByPrice,
