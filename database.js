@@ -177,6 +177,21 @@ const updateProduct = function (sold, ProdId, db) {
   `);
 };
 
+// get featured items
+const isFeatured = (bool, db) => {
+  const sqlQuery =`
+  SELECT * FROM products
+  WHERE is_featured = $1
+  `
+  return db.query(sqlQuery, [`${bool}`])
+  .then((data) => {
+    if(data.rows.length)
+    return data.rows;
+  })
+}
+
+
+
 module.exports = {
   addUser,
   getPictures,
@@ -190,5 +205,6 @@ module.exports = {
   getProductById,
   addProduct,
   deleteProduct,
-  updateProduct
+  updateProduct,
+  isFeatured
 };
