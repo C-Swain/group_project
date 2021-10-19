@@ -69,25 +69,6 @@ const getProductItemById = function (item_id, db) {
   );
 };
 
-// adding items
-
-
-
-const addProduct = function (values, db) {
-  return db.query(
-    `
-    INSERT INTO products (
-    item_id,
-    name,
-    description,
-    link
-    )
-    VALUES($1, $2, $3, $4)
-  `,
-    values
-  );
-};
-
 const getPictures = function(db, limit) {
   return db.query(
     `
@@ -105,12 +86,94 @@ const getPictures = function(db, limit) {
 };
 
 
-//delete an item
-const deleteItem = function (itemId, category, db) {
+// Fetch all the products from the database.
+const getAllProducts = function (db) {
+  return db.query(
+    `
+    SELECT *
+    FROM products
+    WHERE is_sold = 'f'
+    ORDER BY id DESC;
+    `
+  );
+};
 
+// Fetch products by category
+const getProductsByCategory = function (cateory_id, db) {
+  return db.query(
+    `
+    SELECT * FROM products
+    WHERE category_id = $1;
+    `,
+    [`${cateory_id}`]
+  );
+};
+
+// Fetch product by id
+const getProductById = function (product_id, db) {
+  return db.query(
+    `
+    SELECT * FROM products
+    WHERE id = $1;
+    `,
+    [`${product_id}`]
+  );
+};
+
+
+const addProduct = function(product, db) {
+  const queryString = `
+  INSERT INTO products (
+    name,
+    description,
+    price,
+    is_featured,
+    posted_at,
+    image_url,
+    seller_id,
+    category_id
+    )
+    VALUES($1, $2, $3, $4, $5, $6, $7, $8)
+    RETURNING *;
+  `;
+
+  const values = [
+    product.name,
+    product.description,
+    product.price,
+    product.is_featured,
+    product.posted_at,
+    product.image_url,
+    product.seller_id,
+    product.category_id
+  ];
+
+  return db
+    .query(queryString, values)
+    .then((result) => {
+      console.log(result.rows[0]);
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
+
+// Delete product
+const deleteProduct = function (ProdId, db) {
   db.query(`
-DELETE FROM ${category}
-WHERE item_id = ${itemId};
+    DELETE FROM products
+    WHERE id = ${ProdId};
+  `);
+};
+
+// Update a product
+const updateProduct = function (sold, ProdId, db) {
+  db.query(`
+    UPDATE products
+    SET
+    is_sold = ${sold}
+    WHERE id = ${ProdId};
   `);
 };
 
@@ -122,6 +185,10 @@ module.exports = {
   getItemsToWatchById,
   getItemsToBuyById,
   getProductItemById,
+  getAllProducts,
+  getProductsByCategory,
+  getProductById,
   addProduct,
-  deleteItem
+  deleteProduct,
+  updateProduct
 };
