@@ -57,9 +57,17 @@ app.use("/api/products", widgetsRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
+
+  let user = null;
+   const templateVars = { 
+    db: db,
+    user
+  };
+
 getPictures(db, 5)
 .then(data => {console.log(data)
    const templateVars = { data: data};
+
    res.render("index", templateVars);
 })
 });

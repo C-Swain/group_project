@@ -1,18 +1,119 @@
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+// body {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   min-height: 100vh;
 
-  background: rgb(163, 208, 219);
-  background: linear-gradient(
-    227deg,
-    rgba(163, 208, 219, 1) 0%,
-    rgba(163, 176, 219, 1) 20%,
-    rgba(163, 173, 219, 1) 34%,
-    rgba(163, 219, 208, 1) 59%,
-    rgba(163, 208, 219, 1) 74%,
-    rgba(163, 208, 219, 1) 100%
-  );
+//   background: rgb(163, 208, 219);
+//   background: linear-gradient(
+//     227deg,
+//     rgba(163, 208, 219, 1) 0%,
+//     rgba(163, 176, 219, 1) 20%,
+//     rgba(163, 173, 219, 1) 34%,
+//     rgba(163, 219, 208, 1) 59%,
+//     rgba(163, 208, 219, 1) 74%,
+//     rgba(163, 208, 219, 1) 100%
+//   );
+// }
+
+$primary-color: #ffce00;
+
+body {
+  font-size: 1rem;
+  // background: rgb(163, 208, 219);
+  // background: linear-gradient(
+  //   227deg,
+  //   rgba(163, 208, 219, 1) 0%,
+  //   rgba(163, 176, 219, 1) 20%,
+  //   rgba(163, 173, 219, 1) 34%,
+  //   rgba(163, 219, 208, 1) 59%,
+  //   rgba(163, 208, 219, 1) 74%,
+  //   rgba(163, 208, 219, 1) 100%);
+    color: whitesmoke;
+    background-color: black;
+    // add font family
+    min-height: 100vh;
+    padding-top: 3em;
 }
 
+.wrapper {
+  max-width: 1100px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.img {
+  width: 200px;
+  height: 200px;
+  display: block;
+  object-fit: cover;
+}
+
+h1 {
+  font-size: 4rem;
+  color: $primary-color;
+  // font family
+  margin-bottom: 0;
+  border-bottom: 4px solid whitesmoke;
+  padding-bottom: 0.4em;
+}
+
+span {
+  display: block;
+}
+h2 {
+  font-size: 3rem;
+  margin-top: 0.2em;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-bar {
+  margin-top: 0.1em;
+}
+
+input[type='text'] {
+  margin-right: -0.3em;
+  padding-left: 0.3em;
+}
+
+input[type="text"]:hover,
+input[type="text"]:focus {
+  background-color:white;
+  color:  #0f2128;
+}
+
+input[type="submit"] {
+  background-color: $primary-color;
+  color: #0f2128;
+  padding: 1px 15px;
+}
+
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+  color: white;
+}
+
+
+.results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.img-box {
+  margin: 30px 10px;
+  width: 350px;
+  // border: 6px solid $primary-color;
+  
+    img {
+      width: 100%;
+      margin-bottom: 0.3em;
+    }
+}
+
+.pic-box {
+}
