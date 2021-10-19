@@ -3,6 +3,7 @@ const router = express.Router();
 const {
   addUser,
   getUserByEmail,
+  isFeatured,
   getUserById,
   getItemsToWatchById,
   getItemsToBuyById,
@@ -45,8 +46,8 @@ router.post('/login', (req, res) => {
         res.send('register')
       } else {
         console.log(data.rows[0].id)
-         req.session.user_id = data.rows[0].id ;
-        res.send('logged in successfully')
+        req.session.user_id = data.rows[0].id ;
+        res.redirect('store')
       }
     })
 });
@@ -80,12 +81,28 @@ router.post("/register", (req, res) => {
 
 
 // use we have the log in working with cookies we can active this property currently just making the page
-router.get("/todo/new", (req, res) => {
-  // const userID = req.session.user_id;
-  // const loggedinUser = users[userID];
-  // const templateVars = { user: loggedinUser };
-  res.render("todo_new");
-})
+router.get("/store", (req, res) => {
+
+  isFeatured(true, db)
+  .then(data => {
+    
+    console.log('this',data)
+    
+    const templateVars = { data }
+    
+    res.render("store", templateVars);
+    });
+    // console.log(data)
+    // const templateVars = {
+    //   data: data
+    // }
+    
+  });
+  // console.log(templateVars);
+  // const templateVars = { keyImage }
+
+
+
 
 // we will need a route to log the favourite page . it will take the ID of the user
 // and display things they have addedto favourites
