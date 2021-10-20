@@ -115,7 +115,8 @@ const getProductsByCategoryName = function (category_name, db) {
     `
     SELECT products.* FROM products
     JOIN categories ON categories.id = products.category_id
-    WHERE categories.name LIKE $1;
+    WHERE categories.name LIKE $1
+    ORDER BY products.price DESC;
     `,
     [`${category_name}`]
   )
@@ -200,11 +201,18 @@ const addProduct = function(product, db) {
 }
 
 // Delete product
-const deleteProduct = function (ProdId, db) {
+const deleteProduct = function (prodId, db) {
+
   db.query(`
     DELETE FROM products
-    WHERE id = ${ProdId};
-  `);
+    WHERE id = ${prodId};
+
+  `)
+
+  // .then((res) => {
+  // console.log(res.rows[0])
+  // })
+
 };
 
 // Update a product
