@@ -17,11 +17,11 @@
           <a href="/api/products/Cars" class="dropdown-item">Cars</a>
           <a href="/api/products/Shoes" class="dropdown-item">Shoes</a>
           <a href="/api/products/Typewriters" class="dropdown-item">Typewriters</a>
-          
+
         </div>
       </li>
     </ul>
-    
+
     </div>
 
     <div>
@@ -32,8 +32,8 @@
     </div>
     <% } else {%>
     <div>
-      <form method="POST" action="/logout">
-        Logged In As: <%= user.name %>
+      <form method="POST" action="/api/users/logout">
+        Logged In As: <%=user%>
         <button type="submit" class="btn btn-outline-dark">LogOut</button>
       </form>
     </div>
