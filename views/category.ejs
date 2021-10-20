@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,17 +24,27 @@
 
  <% for (item of data) { %>
   <div class="category-container">
+
     <div class="image-container" >
-  <img src=<%=item.image_url%>></img>
-</div>
-  <div class="category-div">
-    <p class="product name"><%=item.name%> </p>
-    <p class="product description"><%=item.description%></p>
-    <p class="product price"> $ <%=item.price%></p>
-    <button class="producttext"type"button"> Send Message</button>
-    <button class="remove product"type"button">Delete Product</button>
+      <img src=<%=item.image_url%>></img>
+    </div>
+
+    <div class="category-div">
+
+      <div class="product-info">
+        <p class="product name"><%=item.name%> </p>
+        <p class="product description"><%=item.description%></p>
+        <p class="product price"> $ <%=item.price%></p>
+      </div>
+
+      <div class="product-buttons">
+        <button class=" btn producttext"type"button"> Send Message</button>
+        <button class=" btn remove product"type"button">Delete Product
+        </button>
+      </div>
+      
+    </div>
   </div>
-</div>
 
 <% } %>
 
