@@ -58,8 +58,8 @@ app.use("/api/products", widgetsRoutes(db));
 
 app.get("/", (req, res) => {
 
-  let user = null;
-   const templateVars = { 
+  let user = req.session.user_name;
+   const templateVars = {
 
     user
   };

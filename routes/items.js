@@ -30,21 +30,25 @@ module.exports = (db) => {
 
  // this renders a page using the category indicated
  router.get("/:category", (req, res) => {
-   const category =req.params.category;
 
+   
+  const category =req.params.category;
+  const loggedinUser = req.session.user_id
+  const isAdmin = req.session.user_isAdmin;
   const user = req.session.user_name;
-  //  const loggedinUser = users[userID];
+  console.log("logged in User Id", loggedinUser )
+  console.log("is Admin", isAdmin )
+  console.log("Hello", user)
+
+  if (!loggedinUser) {
+    res.send("You must login in order to view by category")
+  }
 
 // we will have a function that  makes a sql query based on the category inputed in order to select only thoose items
 getProductsByCategoryName(category, db)
 .then(data => {
 
-  console.log('this',data)
-
- const templateVars = { data ,
-  category,
-  user 
-};
+ const templateVars = {data ,category , user};
 
 
   res.render("category", templateVars);

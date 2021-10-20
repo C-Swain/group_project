@@ -14,8 +14,6 @@ const {
 
 
 router.use(express.urlencoded({ extended: true }));
-const cookieParser = require("cookie-parser");
-const cookieSession = require("cookie-session");
 
 
 module.exports = (db) => {
@@ -49,8 +47,11 @@ router.post('/login', (req, res) => {
         res.send('register')
       } else {
         console.log(data.rows[0].id)
+        console.log(data.rows[0].is_admin)
+        req.session.user_isAdmin = data.rows[0].is_admin;
         req.session.user_id = data.rows[0].id ;
-        res.redirect('store')
+        req.session.user_name = data.rows[0].name;
+        res.redirect("store")
       }
     })
 });
@@ -77,7 +78,9 @@ router.post("/register", (req, res) => {
       getUserByEmail(user.email, db)
       .then (data => {
        console.log(data.rows[0].id);
-       req.session.user_id = data.rows[0].id ;
+      req.session.user_id = data.rows[0].id ;
+      req.session.user_isAdmin = false;
+      req.session.user_name = data.rows[0].name;
        return res.send('logged in successfully');
       })
 })
@@ -87,28 +90,19 @@ router.post("/register", (req, res) => {
 router.get("/store", (req, res) => {
   const user = req.session.user_name;
 
-
   isFeatured(true, db)
   .then(data => {
+
     
-    console.log('this',data)
-    
-    const templateVars = { 
-      data,
-      user
-     }
-    
+
+    const templateVars = { data ,user }
+
+
     res.render("store", templateVars);
     });
-    // console.log(data)
-    // const templateVars = {
-    //   data: data
-    // }
-    
-  });
-  // console.log(templateVars);
-  // const templateVars = { keyImage }
 
+
+  });
 
 
 
@@ -121,15 +115,12 @@ router.get("/store", (req, res) => {
   //res.render("Favourite");
 // })
 
-// space to post new todo item
-// app.post("/BUY", (req, res) => {
-//   const userID = req.session.user_id;
-//   const loggedinUser = users[userID]
-//
-// });
+// the logout route
  router.post('/logout', (req, res) => {
    req.session.user_id = null;
-   res.send({});
+   req.session.user_isAdmin = null;
+   req.session.user_name = null;
+   res.redirect("store");
  })
 
 
