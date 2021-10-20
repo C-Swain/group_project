@@ -16,7 +16,11 @@
 //   );
 // }
 
+
 $primary-color: #ffce00;
+$font-1: 'Cinzel', serif;
+$font-2: 'Holtwood One SC', serif;
+$font-3: 'Metal Mania', cursive;
 
 body {
   font-size: 1rem;
@@ -34,6 +38,15 @@ body {
     // add font family
     min-height: 100vh;
     padding-top: 3em;
+
+    p {
+      font-family: $font-1;
+    }
+    .navbar-brand {
+      font-family: $font-1;
+      letter-spacing: 1.1px;
+
+    }
 }
 
 .wrapper {
@@ -53,6 +66,7 @@ h1 {
   font-size: 4rem;
   color: $primary-color;
   // font family
+  font-family: $font-2;
   margin-bottom: 0;
   border-bottom: 4px solid whitesmoke;
   padding-bottom: 0.4em;
@@ -64,6 +78,7 @@ span {
 h2 {
   font-size: 3rem;
   margin-top: 0.2em;
+  font-family: $font-3;
 }
 
 header {
@@ -158,4 +173,37 @@ input[type="submit"]:focus {
   }
 
   
+}
+
+// styles for Nav
+.form {
+  margin-bottom: 0px;
+
+  form {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 0px;
+
+    p {
+      margin-right: 1em;
+      margin-bottom: 0px;
+
+      em {
+        margin-left: 0.3em;
+      }
+    }
+  }
+}
+
+.btn {
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  letter-spacing: 1px;
+
+  &:hover {
+    animation: ani 0.7s steps(22) forwards;
+    // background-color: $primary-color;
+    color: $primary-color;
+  }
 }
