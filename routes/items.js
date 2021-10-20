@@ -7,9 +7,10 @@
 
 const express = require('express');
 const router  = express.Router();
-const { getProductsByCategoryName,
- } = require('../database');
- const { filterByPrice } = require('../database')
+
+const { getProductsByCategoryName, deleteProduct
+ } = require('../database')
+
 
 // code that diplays api of products for trouble shooting
 module.exports = (db) => {
@@ -69,7 +70,7 @@ router.post("/filterPrice", (req, res) => {
 // we will have a function that  makes a sql query based on the category inputed in order to select only thoose items
 getProductsByCategoryName(category, db)
 .then(data => {
-
+console.log(data)
  const templateVars = {data ,category , user};
 
 
@@ -77,6 +78,22 @@ getProductsByCategoryName(category, db)
   });
 
 })
+
+// deletes a product but only if you are an admin , otherwise tells you to ask ad
+router.post("/:prodId/delete", (req, res) => {
+  const prodId =req.params.prodId;
+
+  const isAdmin = req.session.user_isAdmin;
+
+  if (isAdmin === false) {
+    res.send("You must be an admin to remove items, please contact an admin for assistance")
+  }
+  deleteProduct(prodId, db)
+  res.redirect("/api/users/store")
+})
+
+
+
 
 return router
 
