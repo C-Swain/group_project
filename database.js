@@ -156,10 +156,15 @@ const filterByPrice = function(min, max, db) {
   const queryString = `
   SELECT *
   FROM products
-  WHERE price <= $2 AND price >= $1;`;
+  WHERE price <= $2 AND price >= $1
+  ORDER BY price DESC;`;
 
-  return db.query(queryString, queryParams);
+  return db.query(queryString, queryParams)
+  .then((data) => {
+    return data.rows;
+  });
 };
+
 
 // Add a new product.
 const addProduct = function(product, db) {

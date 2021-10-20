@@ -7,6 +7,7 @@
 
 const express = require('express');
 const router  = express.Router();
+
 const { getProductsByCategoryName, deleteProduct
  } = require('../database')
 
@@ -28,6 +29,29 @@ module.exports = (db) => {
       });
   });
 
+router.get("/filterPrice", (req, res) => {
+  const templateVars = req.params;
+  res.render("filterPrice", templateVars);
+});
+
+// This renders to the products list page with the given price range
+router.post("/filterPrice", (req, res) => {
+
+  console.log('params: ',req.body);
+
+  const min = req.body.min;
+  const max = req.body.max;
+
+  // db helper function to get the products after filtering by price
+  filterByPrice(min, max, db)
+  .then(data => {
+    //console.log('After Filtering with price: ',data)
+    const templateVars = {data};
+
+    res.render("filterPrice", templateVars);
+  });
+
+});
 
  // this renders a page using the category indicated
  router.get("/:category", (req, res) => {
