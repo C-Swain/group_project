@@ -25,9 +25,12 @@
 <h2> Here is our Selection of Vintage <%=category%></h2>
 
  <% for (item of data) { %>
+    <div class="category-container">
+    <div class="image-container" >
   <div>
   <img src=<%=item.image_url%>></img>
-    <div>
+</div>
+  <div class="category-div">
     <p class="product name"><%=item.name%> </p>
     <p class="product description"><%=item.description%></p>
     <p class="product price"> $ <%=item.price%></p>
