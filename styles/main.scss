@@ -118,4 +118,40 @@ input[type="submit"]:focus {
 // category styles
 .category-container {
   display: flex;
+  border: 3px solid burlywood;
+  width: 90%;
+  // height: 255px;
+  margin: 0 auto;
+  margin-bottom: 1em;
+  padding: 1.5em;
+  .btn {
+    display: inline-block;
+    padding: 0.35em 1.2em;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 2em;
+    text-decoration: none;
+    background-color: $primary-color;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .image-container {
+    width: 30vw;
+    // height: 10wh;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 5%;
+    }
+  }
+
+  .category-div {
+    margin-left: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  
 }
