@@ -34,6 +34,10 @@ $(() => {
   }
   $getImages();
 
+  const setActive = ()=> {
+    console.log($('.carousel-item')[0]);
+  }
+  setActive();
   
 
 })

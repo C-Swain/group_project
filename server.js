@@ -58,19 +58,20 @@ app.use("/api/products", widgetsRoutes(db));
 
 app.get("/", (req, res) => {
 
-  let user = null;
+  let user = req.session.user_name;
    const templateVars = {
-    db: db,
+
     user
   };
 
+
+  res.render("index", templateVars);
+
+});
 // getPictures(db, 5)
 // .then(data => {console.log(data)
 //    const templateVars = { data: data};
 
-//    res.render("index", templateVars);
-// })
-// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

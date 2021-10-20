@@ -16,7 +16,11 @@
 //   );
 // }
 
+
 $primary-color: #ffce00;
+$font-1: 'Cinzel', serif;
+$font-2: 'Holtwood One SC', serif;
+$font-3: 'Metal Mania', cursive;
 
 body {
   font-size: 1rem;
@@ -34,6 +38,15 @@ body {
     // add font family
     min-height: 100vh;
     padding-top: 3em;
+
+    p {
+      font-family: $font-1;
+    }
+    .navbar-brand {
+      font-family: $font-1;
+      letter-spacing: 1.1px;
+
+    }
 }
 
 .wrapper {
@@ -53,6 +66,7 @@ h1 {
   font-size: 4rem;
   color: $primary-color;
   // font family
+  font-family: $font-2;
   margin-bottom: 0;
   border-bottom: 4px solid whitesmoke;
   padding-bottom: 0.4em;
@@ -64,6 +78,7 @@ span {
 h2 {
   font-size: 3rem;
   margin-top: 0.2em;
+  font-family: $font-3;
 }
 
 header {
@@ -115,5 +130,80 @@ input[type="submit"]:focus {
     }
 }
 
-.pic-box {
+// category styles
+
+.category-h2 {
+  padding-top: 2rem;
+}
+.category-container {
+  display: flex;
+  border: 3px solid burlywood;
+  width: 90%;
+  // height: 255px;
+  margin: 0 auto;
+  margin-bottom: 1em;
+  padding: 1.5em;
+  .btn {
+    display: inline-block;
+    padding: 0.35em 1.2em;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 2em;
+    text-decoration: none;
+    background-color: $primary-color;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .image-container {
+    width: 30vw;
+    // height: 10wh;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 5%;
+    }
+  }
+
+  .category-div {
+    margin-left: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  
+}
+
+// styles for Nav
+.form {
+  margin-bottom: 0px;
+
+  form {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 0px;
+
+    p {
+      margin-right: 1em;
+      margin-bottom: 0px;
+
+      em {
+        margin-left: 0.3em;
+      }
+    }
+  }
+}
+
+.btn {
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  letter-spacing: 1px;
+
+  &:hover {
+    animation: ani 0.7s steps(22) forwards;
+    // background-color: $primary-color;
+    color: $primary-color;
+  }
 }

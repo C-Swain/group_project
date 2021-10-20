@@ -109,6 +109,21 @@ const getProductsByCategory = function (cateory_id, db) {
   );
 };
 
+//gets product by categoryName
+const getProductsByCategoryName = function (category_name, db) {
+  return db.query(
+    `
+    SELECT products.* FROM products
+    JOIN categories ON categories.id = products.category_id
+    WHERE categories.name LIKE $1;
+    `,
+    [`${category_name}`]
+  )
+  .then((data) => {
+    return data.rows;
+  })
+};
+
 // Fetch product by id
 const getProductById = function (product_id, db) {
   return db.query(
@@ -120,7 +135,32 @@ const getProductById = function (product_id, db) {
   );
 };
 
+// Fetch all massages
+const getAllMessages = function (db) {
+  return db.query(
+    `
+    SELECT *
+    FROM texts
+    ORDER BY id DESC;
+    `
+  );
+};
 
+// Fetch all products between the minimum and maximum price
+const filterByPrice = function(min, max, db) {
+  const queryParams = [
+    min,
+    max
+  ];
+  const queryString = `
+  SELECT *
+  FROM products
+  WHERE price <= $2 AND price >= $1;`;
+
+  return db.query(queryString, queryParams);
+};
+
+// Add a new product.
 const addProduct = function(product, db) {
   const queryString = `
   INSERT INTO products (
@@ -177,6 +217,21 @@ const updateProduct = function (sold, ProdId, db) {
   `);
 };
 
+// get featured items
+const isFeatured = (bool, db) => {
+  const sqlQuery =`
+  SELECT * FROM products
+  WHERE is_featured = $1
+  `
+  return db.query(sqlQuery, [`${bool}`])
+  .then((data) => {
+    if(data.rows.length)
+    return data.rows;
+  })
+}
+
+
+
 module.exports = {
   addUser,
   getPictures,
@@ -187,8 +242,12 @@ module.exports = {
   getProductItemById,
   getAllProducts,
   getProductsByCategory,
+  getProductsByCategoryName,
   getProductById,
+  getAllMessages,
+  filterByPrice,
   addProduct,
   deleteProduct,
-  updateProduct
+  updateProduct,
+  isFeatured
 };
