@@ -30,6 +30,8 @@ module.exports = (db) => {
 
  // this renders a page using the category indicated
  router.get("/:category", (req, res) => {
+
+   
   const category =req.params.category;
   const loggedinUser = req.session.user_id
   const isAdmin = req.session.user_isAdmin;

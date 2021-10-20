@@ -4,7 +4,10 @@
 
 <head>
   <header><%- include('partials/_header') %></header>
+
+
   <!-- Bootstrap CSS -->
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
 
@@ -22,24 +25,39 @@
 
 <body>
 
-<h2> Here is our Selection of Vintage <%=category%></h2>
+<h2 class="category-h2" > Vintage you need for <%=category%></h2>
 
  <% for (item of data) { %>
-    <div class="category-container">
+  <div class="category-container">
+
     <div class="image-container" >
-  <div>
-  <img src=<%=item.image_url%>></img>
-</div>
-  <div class="category-div">
-    <p class="product name"><%=item.name%> </p>
-    <p class="product description"><%=item.description%></p>
-    <p class="product price"> $ <%=item.price%></p>
-    <button class="producttext"type"button"> Send Message</button>
-    <button class="remove product"type"button">Delete Product</button>
+      <img src=<%=item.image_url%>></img>
+    </div>
+
+    <div class="category-div">
+
+      <div class="product-info">
+        <p class="product name"><%=item.name%> </p>
+        <p class="product description"><%=item.description%></p>
+        <p class="product price"> $ <%=item.price%></p>
+      </div>
+
+      <div class="product-buttons">
+        <button class=" btn producttext"type"button"> Send Message</button>
+        <button class=" btn remove product"type"button">Delete Product
+        </button>
+      </div>
+      
+    </div>
   </div>
-</div>
+
+
 <% } %>
+
+
+
 <!-- Bootstrap JS -->
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

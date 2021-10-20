@@ -30,7 +30,10 @@ module.exports = (db) => {
 
 
 router.get("/login", (req, res) => {
-  const templateVars = { user: null };
+  console.log(req.session.user_id)
+  const user = req.session.user_name;
+
+  const templateVars = { user };
   res.render("login", templateVars);
 });
 
@@ -86,12 +89,14 @@ router.post("/register", (req, res) => {
 // use we have the log in working with cookies we can active this property currently just making the page
 router.get("/store", (req, res) => {
   const user = req.session.user_name;
+
   isFeatured(true, db)
   .then(data => {
 
-    // console.log('this',data)S
+    
 
     const templateVars = { data ,user }
+
 
     res.render("store", templateVars);
     });
