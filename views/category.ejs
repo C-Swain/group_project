@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <title><%=category%></title>
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
@@ -39,11 +39,11 @@
       </div>
 
       <div class="product-buttons">
-        <button class=" btn producttext"type"button"> Send Message</button>
-        <button class=" btn remove product"type"button">Delete Product
-        </button>
+        <button class=" btn producttext"type="button"> Send Message</button>
+        <td><form method="POST" action="/api/products/<%= item.id %>/delete"><button class=" btn remove product"type="submit">Delete Product
+        </button></form></td>
       </div>
-      
+
     </div>
   </div>
 
