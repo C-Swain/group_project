@@ -115,7 +115,7 @@ router.get("/store", (req, res) => {
    req.session.user_id = null;
    req.session.user_isAdmin = null;
    req.session.user_name = null;
-   res.redirect("store");
+   res.redirect("/");
  })
 
 
