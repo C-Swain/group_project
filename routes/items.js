@@ -8,8 +8,8 @@
 const express = require('express');
 const router  = express.Router();
 
-const { getProductsByCategoryName, deleteProduct
- } = require('../database')
+const { getProductsByCategoryName, deleteProduct, filterByPrice
+} = require('../database')
 
 
 // code that diplays api of products for trouble shooting
