@@ -3,6 +3,8 @@
 <html lang="en">
 <head>
   <header><%- include('partials/_header') %></header>
+  <header><%- include('partials/_search') %></header>
+
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <meta charset="UTF-8">
@@ -45,8 +47,8 @@
 
       <div class="product-buttons">
         <button class=" btn producttext"type="button"> Send Message</button>
-        <td><form method="POST" action="/api/products/<%= item.id %>/delete"><button class=" btn remove product"type="submit">Delete Product
-        </button></form></td>
+        <form method="POST" action="/api/products/<%= item.id %>/delete"><button class=" btn remove product"type="submit">Delete Product
+        </button></form>
       </div>
 
     </div>

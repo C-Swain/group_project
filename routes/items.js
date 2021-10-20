@@ -8,7 +8,7 @@
 const express = require('express');
 const router  = express.Router();
 
-const { getProductsByCategoryName, deleteProduct
+const { getProductsByCategoryName, deleteProduct, filterByPrice
  } = require('../database')
 
 
