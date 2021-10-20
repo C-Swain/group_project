@@ -31,7 +31,8 @@ module.exports = (db) => {
  // this renders a page using the category indicated
  router.get("/:category", (req, res) => {
    const category =req.params.category;
-  // const userID = req.session.user_id;
+
+  const user = req.session.user_name;
   //  const loggedinUser = users[userID];
 
 // we will have a function that  makes a sql query based on the category inputed in order to select only thoose items
@@ -40,8 +41,11 @@ getProductsByCategoryName(category, db)
 
   console.log('this',data)
 
- const templateVars = {data ,category};
-  console.log(data)
+ const templateVars = { data ,
+  category,
+  user 
+};
+
 
   res.render("category", templateVars);
   });
