@@ -9,7 +9,8 @@ const express = require('express');
 const router  = express.Router();
 
 const { getProductsByCategoryName, deleteProduct, filterByPrice
- } = require('../database')
+
+} = require('../database')
 
 
 // code that diplays api of products for trouble shooting
@@ -70,7 +71,7 @@ router.post("/filterPrice", (req, res) => {
 // we will have a function that  makes a sql query based on the category inputed in order to select only thoose items
 getProductsByCategoryName(category, db)
 .then(data => {
-console.log(data)
+// console.log(data)
  const templateVars = {data ,category , user};
 
 
@@ -93,7 +94,13 @@ router.post("/:prodId/delete", (req, res) => {
 })
 
 
-
+ // message route
+ router.get("/messages", (req, res) => {
+  getAllTexts(db)
+  .then(data => {
+    res.json(data)
+  })
+})
 
 return router
 

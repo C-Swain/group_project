@@ -21,6 +21,7 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     db.query(`SELECT * FROM users;`)
       .then((data) => {
+        console.log(data)
         const users = data.rows;
         res.json({ users });
       })
@@ -28,6 +29,8 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
+
+ 
 
 
 router.get("/login", (req, res) => {
@@ -53,7 +56,13 @@ router.post('/login', (req, res) => {
       }
     })
 });
-
+// message route
+router.get("/messages", (req, res) => {
+  getAllTexts(db)
+  .then(data => {
+    res.json(data)
+  })
+})
 
 router.get("/register", (req, res) => {
   // here we check the cookies if you are logged in you are sent to URLS
@@ -126,6 +135,8 @@ router.get("/messages", (req, res) => {
    req.session.user_name = null;
    res.redirect("/");
  })
+
+
 
 
 

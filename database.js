@@ -197,7 +197,6 @@ const addProduct = function(product, db) {
   return db
     .query(queryString, values)
     .then((result) => {
-      console.log(result.rows[0]);
       return result.rows[0];
     })
     .catch((err) => {
@@ -258,6 +257,8 @@ const getAllTexts = (db) => {
 
 
 
+
+
 module.exports = {
   addUser,
   getPictures,
@@ -276,5 +277,6 @@ module.exports = {
   addProduct,
   deleteProduct,
   updateProduct,
-  isFeatured
+  isFeatured,
+  getAllTexts
 };

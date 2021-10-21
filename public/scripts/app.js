@@ -62,4 +62,16 @@ $(() => {
     })
   })
 
+
+  $('#texts').on('click', () => {
+    console.log('you clicked messages')
+    $.get({
+      url: `${BASE_URL}api/users/messages`
+    })
+    .then((data) => {
+      console.log(data);
+      $showTexts(data)
+    })
+  })
+
 })
