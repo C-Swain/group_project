@@ -3,7 +3,6 @@ const BASE_URL = 'http://localhost:1234/'
 $(() => {
   const $api_key = 'N7gUjYrwZdtcyknRlQUgu3CJQpVmUhDZ05tG7ajgY6I';
 
-
   const $showImages = function(images) {
     images.forEach((image) => {
       const $imgHtml = `
