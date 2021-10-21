@@ -30,12 +30,30 @@ $(() => {
           </div>
           <div class="modal-body">
             <div class="modal-content">
-              <p class="user1">${text[0].content}</p>
-              <p class="seller1">${text[1].content}</p>
-              <p class="user2">${text[2].content}</p>
-              <p class="seller2">${text[3].content}</p>
-              <button class="modal-toggle">close</button>
+              <div class="yours messages">
+                <div class="message">${text[0].content}</div>
+              </div>
+              <div class=" mine messages">
+                <div class="message">${text[1].content}</div>
+              </div>
+              <div class="yours messages">
+                <div class="message">${text[2].content}</div>
+              </div>
+              <div class="mine messages">
+                <div class="message">${text[3].content}</div>
+              </div>
+              <div class="yours messages">
+                <div class="message" id="reply"></div>
+              </div>
             </div>
+            <div class="modal-footer">
+            <div class="input-group mb-3">
+              <input id="input" type="text" class="form-control" placeholder="Enter message" aria-label="Enter Message" aria-describedby="basic-addon2">
+            </div>
+            <div class="input-group-append">
+              <button id="listen" class="btn btn-outline-secondary" type="button">Send</button>
+            </div>
+          </div>
           </div>
         </div
       </div>
@@ -73,10 +91,18 @@ $(() => {
       $('.messages').empty();
       $showTexts(data)
       $('.modal').toggleClass('is-visible');
+
+      $('.input-group-append').on('click', (e) => {
+        e.preventDefault();
+        const textVal = $('#input').val();
+        console.log(textVal);
+        $('#input').val('')
+        $('#reply').html(textVal);
+      })
       console.log(data);
     })
   })
-
+  
 
   $(document).on('click', '.modal-toggle', (e) => {
     $('.modal').toggleClass('is-visible');
