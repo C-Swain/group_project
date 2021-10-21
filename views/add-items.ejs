@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <header><%- //include('partials/_header') %></header>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title></title>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Holtwood+One+SC&family=Metal+Mania&display=swap" rel="stylesheet">
+
+
+ <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+</head>
+<body>
+<h2 class="category-h2" > Vintage you need</h2>
+
+
+  <div class="category-container">
+    <div class="category-div">
+      <form method="POST" action="/api/products/new">
+      <div class="product-info">
+        <p class="product-name">Name
+          <input name="itemName" type="text" class="form-control" id="item-name" placeholder="Enter The Name ">
+        </p>
+        <p class="product description">description
+          <div class="form-group green-border-focus">
+            <textarea name="itemDescription" class="form-control" id="item-description" rows="3" placeholder=""></textarea>
+          </div>
+        </p>
+        <p class="product-name">Category
+
+        <select name="itemCategory" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="itemCategory">
+          <option selected>Select the category</option>
+          <option value="1">Toasters</option>
+          <option value="2">Record Players</option>
+          <option value="3">Cameras</option>
+          <option value="4">Cars</option>
+          <option value="5">Shoes</option>
+          <option value="6">Typewriters</option>
+        </select>
+       </p>
+        <p class="product price"> Price
+          <input name="itemPrice" type="text" class="form-control" id="item-price" placeholder="Enter The Price">
+        </p>
+        <p class="product price">
+
+          <div class="form-check">
+            <input name="itemFeatured" class="form-check-input" type="checkbox" value="true" id="itemFeatured">
+            <label class="form-check-label" for="flexCheckDefault">
+              Featured
+            </label>
+          </div>
+
+        </p>
+        <p class="product price"> Image Url
+          <input name="itemImage" type="text" class="form-control" id="itemImage" placeholder="Enter The Url">
+        </p>
+      </div>
+
+      <div class="product-buttons">
+        <button class=" btn producttext" type="submit">Add</button>
+      </div>
+      </form>
+
+    </div>
+  </div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -165,7 +165,6 @@ const filterByPrice = function(min, max, db) {
   });
 };
 
-
 // Add a new product.
 const addProduct = function(product, db) {
   const queryString = `
@@ -174,12 +173,11 @@ const addProduct = function(product, db) {
     description,
     price,
     is_featured,
-    posted_at,
     image_url,
     seller_id,
     category_id
     )
-    VALUES($1, $2, $3, $4, $5, $6, $7, $8)
+    VALUES($1, $2, $3, $4, $5, $6, $7)
     RETURNING *;
   `;
 
@@ -188,7 +186,6 @@ const addProduct = function(product, db) {
     product.description,
     product.price,
     product.is_featured,
-    product.posted_at,
     product.image_url,
     product.seller_id,
     product.category_id
@@ -197,6 +194,7 @@ const addProduct = function(product, db) {
   return db
     .query(queryString, values)
     .then((result) => {
+      console.log(result.rows[0]);
       return result.rows[0];
     })
     .catch((err) => {
