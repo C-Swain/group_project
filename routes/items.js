@@ -32,6 +32,22 @@ module.exports = (db) => {
       });
   });
 
+
+  router.get("/favourites", (req, res) => {
+    const user = req.session.user_name;
+    isFeatured(true, db)
+    .then(data => {
+
+      // console.log('this',data)S
+
+      const templateVars = { data ,user }
+
+      res.render("favourites", templateVars);
+      });
+
+
+    });
+
 // To go to add-items page
 router.get("/new", (req, res) => {
   const templateVars = req.params;
