@@ -243,6 +243,19 @@ const isFeatured = (bool, db) => {
   })
 }
 
+const getAllTexts = (db) => {
+  return db
+  .query(
+    `
+    SELECT * FROM texts
+  `
+  )
+  .then(data => {
+    console.log(data)
+    return data.rows
+  })
+};
+
 
 
 module.exports = {
@@ -258,6 +271,7 @@ module.exports = {
   getProductsByCategoryName,
   getProductById,
   getAllMessages,
+  getAllTexts,
   filterByPrice,
   addProduct,
   deleteProduct,

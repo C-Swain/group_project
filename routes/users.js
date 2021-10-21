@@ -4,6 +4,7 @@ const {
   addUser,
   getUserByEmail,
   isFeatured,
+  getAllTexts,
   getUserById,
   getItemsToWatchById,
   getItemsToBuyById,
@@ -99,6 +100,14 @@ router.get("/store", (req, res) => {
 
   });
 
+
+// message route
+router.get("/messages", (req, res) => {
+  getAllTexts(db)
+  .then(data => {
+    res.json(data)
+  })
+})
 
 
 // we will need a route to log the favourite page . it will take the ID of the user

@@ -44,12 +44,12 @@ app.use(cookieSession({
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
-const widgetsRoutes = require("./routes/items");
+const productRoutes = require("./routes/items");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
-app.use("/api/products", widgetsRoutes(db));
+app.use("/api/products", productRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -68,12 +68,7 @@ app.get("/", (req, res) => {
   res.render("index", templateVars);
 
 });
-// getPictures(db, 5)
-// .then(data => {console.log(data)
-//    const templateVars = { data: data};
 
-// })
-// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
