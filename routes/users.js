@@ -30,9 +30,6 @@ module.exports = (db) => {
       });
   });
 
-
-
-
 router.get("/login", (req, res) => {
   const templateVars = { user: null };
   res.render("login", templateVars);
