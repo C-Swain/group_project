@@ -134,7 +134,7 @@ module.exports = (db) => {
     // we will have a function that  makes a sql query based on the category inputed in order to select only thoose items
     getProductsByCategoryName(category, db).then((data) => {
       // console.log(data)
-      const templateVars = { data, category, user };
+      const templateVars = { data, category, user, isAdmin };
 
       res.render("category", templateVars);
     });
