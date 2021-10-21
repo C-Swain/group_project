@@ -8,8 +8,11 @@
 const express = require('express');
 const router  = express.Router();
 
-const { getProductsByCategoryName, deleteProduct, filterByPrice
- } = require('../database')
+
+const { getProductsByCategoryName, filterByPrice, addProduct, deleteProduct, updateProductAsSold
+} = require('../database');
+
+
 
 
 // code that diplays api of products for trouble shooting
@@ -28,6 +31,64 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+
+  router.get("/favourites", (req, res) => {
+    const user = req.session.user_name;
+    isFeatured(true, db)
+    .then(data => {
+
+      // console.log('this',data)S
+
+      const templateVars = { data ,user }
+
+      res.render("favourites", templateVars);
+      });
+
+
+    });
+
+// To go to add-items page
+router.get("/new", (req, res) => {
+  const templateVars = req.params;
+  console.log('temp vars: ',templateVars);
+  res.render("add-items", templateVars);
+});
+
+// To add a new product to the database
+router.post("/new", (req, res) => {
+  const name = req.body.itemName;
+  const description = req.body.itemDescription;
+  const category_id = req.body.itemCategory;
+  const price = req.body.itemPrice;
+  const image_url = req.body.itemImage;
+  const seller_id = req.session.user_id;
+  let is_featured = false;
+
+  if(req.body.itemFeatured) {
+    is_featured = req.body.itemFeatured;
+  }
+
+  let product = {
+    name,
+    description,
+    category_id,
+    price,
+    is_featured,
+    image_url,
+    seller_id
+  }
+
+  console.log("product: ", product);
+
+  addProduct(product, db)
+  .then (data => {
+     console.log('id here:',data.id);
+
+    res.redirect("/api/users/store");
+  });
+
+});
 
 router.get("/filterPrice", (req, res) => {
   const templateVars = req.params;
@@ -70,7 +131,7 @@ router.post("/filterPrice", (req, res) => {
 // we will have a function that  makes a sql query based on the category inputed in order to select only thoose items
 getProductsByCategoryName(category, db)
 .then(data => {
-console.log(data)
+// console.log(data)
  const templateVars = {data ,category , user};
 
 
@@ -78,6 +139,20 @@ console.log(data)
   });
 
 })
+
+
+router.post("/:prodId/sold", (req, res) => {
+  const prodId =req.params.prodId;
+
+  const isAdmin = req.session.user_isAdmin;
+
+  if (isAdmin === false) {
+    res.send("You must be an admin to mark as sold, please contact an admin for assistance")
+  }
+  updateProductAsSold(prodId, db)
+  res.redirect("/api/users/store")
+})
+
 
 // deletes a product but only if you are an admin , otherwise tells you to ask ad
 router.post("/:prodId/delete", (req, res) => {
@@ -93,7 +168,13 @@ router.post("/:prodId/delete", (req, res) => {
 })
 
 
-
+ // message route
+ router.get("/messages", (req, res) => {
+  getAllTexts(db)
+  .then(data => {
+    res.json(data)
+  })
+})
 
 return router
 
