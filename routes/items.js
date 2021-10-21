@@ -47,10 +47,12 @@ module.exports = (db) => {
     });
   });
 
-  router.post("/:prodID/favourites", (req, res) => {
+  router.post("/:prodId/favourites", (req, res) => {
     const user = req.session.user_name;
-    const user_ID = req.session.user_id;
-
+    const user_id = req.session.user_id;
+    const prodId = req.params.prodId;
+    addToFavourites(user_id, prodId, db)
+    res.redirect("/api/items/favourites")
   });
 
   // To go to add-items page
