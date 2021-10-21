@@ -27,14 +27,14 @@
     <div>
   <% if(!user) { %>
     <div>
-      <a class="btn" href="/api/users/login">Login</a>
-      <a  class="btn" href="/api/users/register">Register</a>
+      <a class="btn log-btn" href="/api/users/login">Login</a>
+      <a  class="btn log-btn" href="/api/users/register">Register</a>
     </div>
     <% } else {%>
     <div class="form">
       <form method="POST" action="/api/users/logout">
         <div><p>Logged In As:<em> <%=user%> </em></p></div>
-        <button type="submit" class="btn btn-outline-dark">LogOut</button>
+        <button type="submit" class="btn btn-outline-dark log-btn">LogOut</button>
       </form>
     </div>
 <% } %>
