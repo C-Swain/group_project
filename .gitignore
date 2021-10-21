@@ -5,4 +5,3 @@ public/styles
 *.sqlite3
 .DS_Store
 special.js
-app.js
