@@ -1,9 +1,9 @@
 // Client facing scripts here
-const BASE_URL = 'http://localhost:1234/'
+const BASE_URL = 'http://localhost:8080/'
 $(() => {
   const $api_key = 'N7gUjYrwZdtcyknRlQUgu3CJQpVmUhDZ05tG7ajgY6I';
 
-  
+
   const $showImages = function(images) {
     images.forEach((image) => {
       const $imgHtml = `
@@ -77,8 +77,12 @@ $(() => {
     })
   })
 
+
   $(document).on('click', '.modal-toggle', (e) => {
     $('.modal').toggleClass('is-visible');
   })
 
 })
+
+})
+

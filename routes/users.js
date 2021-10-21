@@ -30,7 +30,7 @@ module.exports = (db) => {
       });
   });
 
- 
+
 
 
 router.get("/login", (req, res) => {
@@ -127,8 +127,6 @@ router.get("/store", (req, res) => {
    req.session.user_name = null;
    res.redirect("/");
  })
-
-
 
 
 

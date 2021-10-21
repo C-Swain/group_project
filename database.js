@@ -136,6 +136,22 @@ const getProductById = function (product_id, db) {
   );
 };
 
+// gets all favorite products of the user
+const getFavouriteProducts = function (user_id, db) {
+  return db.query(
+    `
+    SELECT favourites.*, products.* FROM favourites
+    JOIN products ON products.id = favourites.product_id
+    WHERE favourites.user_id = $1
+    ORDER BY products.price DESC;
+    `,
+    [`${user_id}`]
+  )
+  .then((data) => {
+    return data.rows;
+  })
+};
+
 // Fetch all massages
 const getAllMessages = function (db) {
   return db.query(
@@ -165,7 +181,6 @@ const filterByPrice = function(min, max, db) {
   });
 };
 
-
 // Add a new product.
 const addProduct = function(product, db) {
   const queryString = `
@@ -174,12 +189,11 @@ const addProduct = function(product, db) {
     description,
     price,
     is_featured,
-    posted_at,
     image_url,
     seller_id,
     category_id
     )
-    VALUES($1, $2, $3, $4, $5, $6, $7, $8)
+    VALUES($1, $2, $3, $4, $5, $6, $7)
     RETURNING *;
   `;
 
@@ -188,7 +202,6 @@ const addProduct = function(product, db) {
     product.description,
     product.price,
     product.is_featured,
-    product.posted_at,
     product.image_url,
     product.seller_id,
     product.category_id
@@ -197,6 +210,34 @@ const addProduct = function(product, db) {
   return db
     .query(queryString, values)
     .then((result) => {
+      console.log(result.rows[0]);
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
+
+// Add to favourites.
+const addToFavourites = function(user_id, product_id, db) {
+  const queryString = `
+    INSERT INTO favourites (
+      user_id,
+      product_id
+    )
+    VALUES($1, $2)
+    RETURNING *;
+  `;
+
+  const values = [
+    user_id,
+    product_id
+  ];
+
+  return db
+    .query(queryString, values)
+    .then((result) => {
+      console.log(result.rows[0]);
       return result.rows[0];
     })
     .catch((err) => {
@@ -219,13 +260,13 @@ const deleteProduct = function (prodId, db) {
 
 };
 
-// Update a product
-const updateProduct = function (sold, ProdId, db) {
+// Update a product as sold
+const updateProductAsSold = function (prodId, db) {
   db.query(`
     UPDATE products
     SET
-    is_sold = ${sold}
-    WHERE id = ${ProdId};
+    image_url= 'https://cdn.pixabay.com/photo/2016/10/09/17/27/stamp-1726355_960_720.jpg'
+    WHERE id = ${prodId};
   `);
 };
 
@@ -273,11 +314,13 @@ module.exports = {
   getProductsByCategory,
   getProductsByCategoryName,
   getProductById,
+  getFavouriteProducts,
   getAllMessages,
   filterByPrice,
   addProduct,
+  addToFavourites,
   deleteProduct,
-  updateProduct,
+  updateProductAsSold,
   isFeatured,
   getAllTexts
 };
