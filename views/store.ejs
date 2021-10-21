@@ -1,3 +1,4 @@
+
 <html lang="en">
 
   <head>
@@ -13,6 +14,12 @@
     <link rel="stylesheet" href="/styles/main.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
+    <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Holtwood+One+SC&family=Metal+Mania&display=swap" rel="stylesheet">
+
+
 
    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
@@ -25,9 +32,29 @@
 
     <title> Featured Products </title>
   </head>
-  <body>
-    
-  </body>
+  <body class=featured-body>
+
+    <h1 id=featured-title> Featured Products - Log in to see all our items</h1>
+<section id="featured-items">
+  <% for (item of data) { %>
+    <div class="feature-container">
+      <div class=" featured-image-container" >
+        <img src=<%=item.image_url%>></img>
+      </div>
+      <div class="feature-category-div">
+        <div class="feature-info">
+          <p class="feature-name"><%=item.name%> </p>
+          <p class="feature-description"><%=item.description%></p>
+          <p class="feature-price"> $ <%=item.price%></p>
+        </div>
+      </div>
+    </div>
+  <% } %>
+
+    </section>
+
+   <!-- Bootstrap JS -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- Boot -->

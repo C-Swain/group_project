@@ -46,8 +46,8 @@
 
       <div class="product-buttons">
         <button class=" btn producttext"type="button"> Send Message</button>
-        <form method="POST" action="/api/products/<%= item.id %>/delete"><button class=" btn remove product"type="submit">Delete Product
-        </button></form>
+        <form method="POST" action="/api/products/<%=item.id%>/delete"><button class=" btn remove product"type="submit">Delete Product</button></form>
+        <form method="POST" action="/api/products/<%=item.id%>/sold"><button class="btn remove product"type="submit">Mark as Sold</button></form>
       </div>
 
     </div>
@@ -61,7 +61,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- Boot -->
 <div class="message">
-  
+
 </div>
 </body>
 </html>

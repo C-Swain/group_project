@@ -8,8 +8,10 @@
 const express = require('express');
 const router  = express.Router();
 
+
 const { getProductsByCategoryName, filterByPrice, addProduct, deleteProduct
 } = require('../database');
+
 
 
 
@@ -121,6 +123,20 @@ getProductsByCategoryName(category, db)
   });
 
 })
+
+
+router.post("/:prodId/sold", (req, res) => {
+  const prodId =req.params.prodId;
+
+  const isAdmin = req.session.user_isAdmin;
+
+  if (isAdmin === false) {
+    res.send("You must be an admin to mark as sold, please contact an admin for assistance")
+  }
+  updateProductAsSold(prodId, db)
+  res.redirect("/api/users/store")
+})
+
 
 // deletes a product but only if you are an admin , otherwise tells you to ask ad
 router.post("/:prodId/delete", (req, res) => {
