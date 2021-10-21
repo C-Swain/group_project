@@ -219,13 +219,13 @@ const deleteProduct = function (prodId, db) {
 
 };
 
-// Update a product
-const updateProduct = function (sold, ProdId, db) {
+// Update a product as sold
+const updateProductAsSold = function (prodId, db) {
   db.query(`
     UPDATE products
     SET
-    is_sold = ${sold}
-    WHERE id = ${ProdId};
+    image_url= 'https://cdn.pixabay.com/photo/2016/10/09/17/27/stamp-1726355_960_720.jpg'
+    WHERE id = ${prodId};
   `);
 };
 
@@ -277,7 +277,7 @@ module.exports = {
   filterByPrice,
   addProduct,
   deleteProduct,
-  updateProduct,
+  updateProductAsSold,
   isFeatured,
   getAllTexts
 };
