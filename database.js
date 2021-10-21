@@ -245,8 +245,6 @@ const isFeatured = (bool, db) => {
 // Grab the text
 
 const getAllTexts = (db) => {
-  
- 
   return db
   .query(
     `
