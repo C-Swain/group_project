@@ -88,7 +88,7 @@ router.post("/register", (req, res) => {
       req.session.user_id = data.rows[0].id ;
       req.session.user_isAdmin = false;
       req.session.user_name = data.rows[0].name;
-       return res.send('logged in successfully');
+      res.redirect("/");
       })
 })
 
