@@ -9,7 +9,7 @@ const express = require('express');
 const router  = express.Router();
 
 
-const { getProductsByCategoryName, filterByPrice, addProduct, deleteProduct
+const { getProductsByCategoryName, filterByPrice, addProduct, deleteProduct, updateProductAsSold
 } = require('../database');
 
 
