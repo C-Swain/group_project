@@ -57,6 +57,7 @@ $(() => {
       url: `${BASE_URL}api/users/messages`
     })
     .then((data) => {
+      $('#texts').empty();
       console.log(data);
       $showTexts(data)
     })
