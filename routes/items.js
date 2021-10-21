@@ -106,10 +106,11 @@ module.exports = (db) => {
     const max = req.body.max;
     const category_name = req.params.category;
     const user = req.session.user_name;
+    const isAdmin = req.session.user_isAdmin;
 
     filterByCategoryAndPrice(min, max, category_name, db)
     .then(data => {
-      const templateVars = {data, category: req.params.category, user};
+      const templateVars = {data, category: req.params.category, user, isAdmin};
 
       res.render("filterPrice", templateVars);
     });
