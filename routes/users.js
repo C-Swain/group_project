@@ -116,14 +116,6 @@ router.get("/messages", (req, res) => {
 })
 
 
-// we will need a route to log the favourite page . it will take the ID of the user
-// and display things they have addedto favourites
-//router.get("/favourites", (req, res) => {
-  // const userID = req.session.user_id;
-  // const loggedinUser = users[userID];
-  // const templateVars = { user: loggedinUser };
-  //res.render("Favourite");
-// })
 
 // the logout route
  router.post('/logout', (req, res) => {
