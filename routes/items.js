@@ -155,7 +155,7 @@ module.exports = (db) => {
     res.redirect("/api/users/store");
   });
 
-  // deletes a product but only if you are an admin , otherwise tells you to ask ad
+  // deletes a product but only if you are an admin , otherwise tells you to ask admin
   router.post("/:prodId/delete", (req, res) => {
     const prodId = req.params.prodId;
 
