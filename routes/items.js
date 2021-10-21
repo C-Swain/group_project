@@ -40,8 +40,6 @@ module.exports = (db) => {
     }
     const user_id = req.session.user_id;
     getFavouriteProducts(user_id, db).then((data) => {
-      console.log("this", data);
-
       const templateVars = { data, user };
 
       res.render("favourites", templateVars);
@@ -53,7 +51,7 @@ module.exports = (db) => {
     const user_id = req.session.user_id;
     const prodId = req.params.prodId;
     addToFavourites(user_id, prodId, db)
-    res.redirect("/api/items/favourites")
+    res.redirect("/api/products/favourites")
   });
 
   // To go to add-items page
