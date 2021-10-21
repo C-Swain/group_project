@@ -21,15 +21,28 @@ $(() => {
 
   const $showTexts = (text) => {
     const $txtHtml = `
-      <div class="text-container">
-      <p class="user1">${text[0].content}</p>
-      <p class="seller1">${text[1].content}</p>
-      <p class="user2">${text[2].content}</p>
-      <p class="seller2">${text[3].content}</p>
+    <div class="modal">
+      <div class="modal-overylay modal-toggle"></div>
+        <div class="modal-wrapper modal-transition">
+          <div class="modal-header">
+            <button class="modal-close modal-toggle">&times;</button>
+            <h2 class="modal-heading"> Messages</h2>
+          </div>
+          <div class="modal-body">
+            <div class="modal-content">
+              <p class="user1">${text[0].content}</p>
+              <p class="seller1">${text[1].content}</p>
+              <p class="user2">${text[2].content}</p>
+              <p class="seller2">${text[3].content}</p>
+              <button class="modal-toggle">close</button>
+            </div>
+          </div>
+        </div
+      </div>
       </div>
     `;
 
-    $('.message').append($txtHtml);
+    $('.messages').append($txtHtml);
 
   }
 
@@ -51,15 +64,25 @@ $(() => {
   setActive();
 
 
-  $('#texts').on('click', () => {
-    console.log('you clicked messages')
+  $('#texts').on('click', (e) => {
+    e.preventDefault();
     $.get({
       url: `${BASE_URL}api/users/messages`
     })
     .then((data) => {
-      console.log(data);
+      $('.messages').empty();
       $showTexts(data)
+      $('.modal').toggleClass('is-visible');
+      console.log(data);
     })
   })
 
+
+  $(document).on('click', '.modal-toggle', (e) => {
+    $('.modal').toggleClass('is-visible');
+  })
+
 })
+
+})
+
