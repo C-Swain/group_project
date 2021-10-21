@@ -198,7 +198,7 @@ input[type="submit"]:focus {
 //featured items styles
 .featured-body {
 background-color: #0f0400;
-font-family: $font-2;
+font-family: $font-1;
 padding-top: 5em;
 #featured-title{
   align-self: center;
@@ -214,7 +214,7 @@ display: flex;
 .feature-container {
   display: flex;
   flex-direction: column;
-  font-family: $font-2;
+  font-family: $font-1;
   font-style: italic bold;
   font-size: small;
   color: black;

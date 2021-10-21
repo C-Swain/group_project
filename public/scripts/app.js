@@ -1,9 +1,13 @@
 // Client facing scripts here
 <<<<<<< HEAD
+<<<<<<< HEAD
 const BASE_URL = 'http://localhost:1234/'
 =======
 const BASE_URL = 'http://localhost:8080/'
 >>>>>>> 744e91de4bc82ae6a7b4a5e8b95e89264e6697f3
+=======
+const BASE_URL = 'http://localhost:1234/'
+>>>>>>> c73a01a3fb91c80971c0d964243410e85e4dfff1
 $(() => {
   const $api_key = 'N7gUjYrwZdtcyknRlQUgu3CJQpVmUhDZ05tG7ajgY6I';
 
@@ -88,5 +92,5 @@ $(() => {
 
 })
 
-})
+
 
