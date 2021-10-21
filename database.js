@@ -136,6 +136,22 @@ const getProductById = function (product_id, db) {
   );
 };
 
+// gets all favorite products of the user
+const getFavouriteProducts = function (user_id, db) {
+  return db.query(
+    `
+    SELECT favourites.*, products.* FROM favourites
+    JOIN products ON products.id = favourites.product_id
+    WHERE favourites.user_id = $1
+    ORDER BY products.price DESC;
+    `,
+    [`${user_id}`]
+  )
+  .then((data) => {
+    return data.rows;
+  })
+};
+
 // Fetch all massages
 const getAllMessages = function (db) {
   return db.query(
@@ -189,6 +205,33 @@ const addProduct = function(product, db) {
     product.image_url,
     product.seller_id,
     product.category_id
+  ];
+
+  return db
+    .query(queryString, values)
+    .then((result) => {
+      console.log(result.rows[0]);
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
+
+// Add to favourites.
+const addToFavourites = function(user_id, product_id, db) {
+  const queryString = `
+    INSERT INTO favourites (
+      user_id,
+      product_id
+    )
+    VALUES($1, $2)
+    RETURNING *;
+  `;
+
+  const values = [
+    user_id,
+    product_id
   ];
 
   return db
@@ -271,9 +314,11 @@ module.exports = {
   getProductsByCategory,
   getProductsByCategoryName,
   getProductById,
+  getFavouriteProducts,
   getAllMessages,
   filterByPrice,
   addProduct,
+  addToFavourites,
   deleteProduct,
   updateProductAsSold,
   isFeatured,
