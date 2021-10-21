@@ -12,6 +12,7 @@ const {
   getProductsByCategoryName,
   filterByPrice,
   addProduct,
+  addToFavourites,
   deleteProduct,
   getFavouriteProducts,
   updateProductAsSold,
