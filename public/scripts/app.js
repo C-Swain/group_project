@@ -1,18 +1,15 @@
 // Client facing scripts here
+const BASE_URL = 'http://localhost:1234/'
 $(() => {
   const $api_key = 'N7gUjYrwZdtcyknRlQUgu3CJQpVmUhDZ05tG7ajgY6I';
-  let $query 
-  // $('#query').on('submit', (event) => {
-  //   event.preventDefault();
-  //   $getImages($('#search-input').val())
-  // })
+
   
   const $showImages = function(images) {
     images.forEach((image) => {
       const $imgHtml = `
         <div class="img-box">
           <div class="pic-box">
-            <img src="${image.urls.small}" alt="${image.alt_description}"
+            <img src="${image.urls.thumb}" alt="${image.alt_description}"
           </div>
           <p class="img-name">${image.alt_description}</p>
         </div>
@@ -20,6 +17,20 @@ $(() => {
 
       $('.results').append($imgHtml);
     });
+  }
+
+  const $showTexts = (text) => {
+    const $txtHtml = `
+      <div class="text-container">
+      <p class="user1">${text[0].content}</p>
+      <p class="seller1">${text[1].content}</p>
+      <p class="user2">${text[2].content}</p>
+      <p class="seller2">${text[3].content}</p>
+      </div>
+    `;
+
+    $('.message').append($txtHtml);
+
   }
 
   const $getImages = () => {
@@ -38,6 +49,17 @@ $(() => {
     console.log($('.carousel-item')[0]);
   }
   setActive();
-  
+
+
+  $('#texts').on('click', () => {
+    console.log('you clicked messages')
+    $.get({
+      url: `${BASE_URL}api/users/messages`
+    })
+    .then((data) => {
+      console.log(data);
+      $showTexts(data)
+    })
+  })
 
 })
