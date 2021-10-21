@@ -197,7 +197,6 @@ const addProduct = function(product, db) {
   return db
     .query(queryString, values)
     .then((result) => {
-      console.log(result.rows[0]);
       return result.rows[0];
     })
     .catch((err) => {
@@ -243,6 +242,25 @@ const isFeatured = (bool, db) => {
   })
 }
 
+// Grab the text
+
+const getAllTexts = (db) => {
+  
+ 
+  return db
+  .query(
+    `
+    SELECT * FROM texts
+  `
+  )
+  .then(data => {
+    console.log(data)
+    return data.rows
+  })
+};
+
+
+
 
 
 module.exports = {
@@ -262,5 +280,6 @@ module.exports = {
   addProduct,
   deleteProduct,
   updateProduct,
-  isFeatured
+  isFeatured,
+  getAllTexts
 };
