@@ -31,7 +31,7 @@
   <header><%- include('partials/_header') %></header>
   <div>
 <h2 class="category-h2" > Vintage you need for <%=category%></h2>
-<form method="POST" action="/api/products/filterPrice">
+<form method="POST" action='/api/products/filterPrice/<%=category%>'>
 
   <div class="form-row">
     <div class="form-group col-md-4">

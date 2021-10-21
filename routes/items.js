@@ -10,7 +10,7 @@ const router = express.Router();
 
 const {
   getProductsByCategoryName,
-  filterByPrice,
+  filterByCategoryAndPrice,
   addProduct,
   addToFavourites,
   deleteProduct,
@@ -100,20 +100,22 @@ module.exports = (db) => {
   });
 
   // This renders to the products list page with the given price range
-  router.post("/filterPrice", (req, res) => {
-    console.log("params: ", req.body);
+  router.post("/filterPrice/:category", (req, res) => {
 
     const min = req.body.min;
     const max = req.body.max;
+    const category_name = req.params.category;
+    const user = req.session.user_name;
 
-    // db helper function to get the products after filtering by price
-    filterByPrice(min, max, db).then((data) => {
-      //console.log('After Filtering with price: ',data)
-      const templateVars = { data };
+    filterByCategoryAndPrice(min, max, category_name, db)
+    .then(data => {
+      const templateVars = {data, category: req.params.category, user};
 
       res.render("filterPrice", templateVars);
     });
+
   });
+
 
   // this renders a page using the category indicated
   router.get("/:category", (req, res) => {
