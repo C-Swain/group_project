@@ -84,7 +84,7 @@ router.post("/register", (req, res) => {
       addUser(user, db)
       getUserByEmail(user.email, db)
       .then (data => {
-       console.log(data.rows[0].id);
+
       req.session.user_id = data.rows[0].id ;
       req.session.user_isAdmin = false;
       req.session.user_name = data.rows[0].name;
