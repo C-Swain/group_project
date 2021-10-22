@@ -3,6 +3,7 @@ const BASE_URL = 'http://localhost:1234/'
 $(() => {
   const $api_key = 'N7gUjYrwZdtcyknRlQUgu3CJQpVmUhDZ05tG7ajgY6I';
 
+
   const $showImages = function(images) {
     images.forEach((image) => {
       const $imgHtml = `
@@ -20,7 +21,6 @@ $(() => {
 
   const $showTexts = (text) => {
     const $txtHtml = `
-
     <div class="modal">
       <div class="modal-overylay modal-toggle"></div>
         <div class="modal-wrapper modal-transition">
@@ -57,7 +57,6 @@ $(() => {
           </div>
         </div
       </div>
-
       </div>
     `;
 
@@ -83,13 +82,12 @@ $(() => {
   setActive();
 
 
-  $('#texts').on('click', () => {
-    console.log('you clicked messages')
+  $('#texts').on('click', (e) => {
+    e.preventDefault();
     $.get({
       url: `${BASE_URL}api/users/messages`
     })
     .then((data) => {
-
       $('.messages').empty();
       $showTexts(data)
       $('.modal').toggleClass('is-visible');
@@ -101,17 +99,16 @@ $(() => {
         $('#input').val('')
         $('#reply').html(textVal);
       })
-
       console.log(data);
-      $showTexts(data)
     })
   })
-
   
 
   $(document).on('click', '.modal-toggle', (e) => {
     $('.modal').toggleClass('is-visible');
   })
 
-
 })
+
+
+
