@@ -1,38 +1,28 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <header><%- include('partials/_header') %></header>
-
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title><%=category%></title>
-
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-
   <!-- fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Holtwood+One+SC&family=Metal+Mania&display=swap" rel="stylesheet">
-
-
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
-
 <body>
   <header><%- include('partials/_header') %></header>
-  <div class="header-input">
+  <div>
 <h2 class="category-h2" > Vintage you need for <%=category%></h2>
 <form method="POST" action='/api/products/filterPrice/<%=category%>'>
-
   <div class="form-row">
     <div class="form-group col-md-4">
       <label for="min">  </label>
@@ -44,29 +34,24 @@
     </div>
     <div class="form-group col-md-3">
       <label>   </label>
-
-        <button type="submit" class="btn search btn-outline-secondary" id="search-price">Search</button>
-
+        <button type="submit" class="btn btn-outline-secondary" id="search-price">Search</button>
     </div>
   </div>
 </form>
 </div>
 
-<% for (item of data) { %>
-  <div class="category-container">
+ <% for (item of data) { %>
 
+  <div class="category-container">
     <div class="image-container" >
       <img src=<%=item.image_url%>></img>
     </div>
-
     <div class="category-div">
-
       <div class="product-info">
         <p class="product name"><%=item.name%> </p>
         <p class="product description"><%=item.description%></p>
         <p class="product price"> $ <%=item.price%></p>
       </div>
-
       <div class="product-buttons">
         <form method="POST" action="/api/products/<%=item.id%>/favourites"><button class=" btn remove product"type="submit">Add to favourites</button></form>
         <% if(isAdmin) { %>
@@ -78,21 +63,11 @@
       </div>
     </div>
   </div>
-
 <% } %>
-
-    </div>
-  </div>
-</div>
-<% } %>
-
-
 <!-- Bootstrap JS -->
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- Boot -->
-
 <div class="messages">
 </div>
 </body>
