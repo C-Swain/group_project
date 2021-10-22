@@ -1,5 +1,5 @@
 // Client facing scripts here
-const BASE_URL = 'http://localhost:8080/'
+const BASE_URL = 'http://localhost:1234/'
 $(() => {
   const $api_key = 'N7gUjYrwZdtcyknRlQUgu3CJQpVmUhDZ05tG7ajgY6I';
 
@@ -61,7 +61,7 @@ $(() => {
       </div>
     `;
 
-    $('.message').append($txtHtml);
+    $('.messages').append($txtHtml);
 
   }
 
