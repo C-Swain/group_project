@@ -1,8 +1,7 @@
 // Client facing scripts here
-const BASE_URL = 'http://localhost:1234/'
+const BASE_URL = 'http://localhost:8080/'
 $(() => {
   const $api_key = 'N7gUjYrwZdtcyknRlQUgu3CJQpVmUhDZ05tG7ajgY6I';
-
 
   const $showImages = function(images) {
     images.forEach((image) => {
@@ -21,6 +20,7 @@ $(() => {
 
   const $showTexts = (text) => {
     const $txtHtml = `
+
     <div class="modal">
       <div class="modal-overylay modal-toggle"></div>
         <div class="modal-wrapper modal-transition">
@@ -57,10 +57,11 @@ $(() => {
           </div>
         </div
       </div>
+
       </div>
     `;
 
-    $('.messages').append($txtHtml);
+    $('.message').append($txtHtml);
 
   }
 
@@ -82,12 +83,13 @@ $(() => {
   setActive();
 
 
-  $('#texts').on('click', (e) => {
-    e.preventDefault();
+  $('#texts').on('click', () => {
+    console.log('you clicked messages')
     $.get({
       url: `${BASE_URL}api/users/messages`
     })
     .then((data) => {
+
       $('.messages').empty();
       $showTexts(data)
       $('.modal').toggleClass('is-visible');
@@ -99,16 +101,17 @@ $(() => {
         $('#input').val('')
         $('#reply').html(textVal);
       })
+
       console.log(data);
+      $showTexts(data)
     })
   })
+
   
 
   $(document).on('click', '.modal-toggle', (e) => {
     $('.modal').toggleClass('is-visible');
   })
 
+
 })
-
-
-

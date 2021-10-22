@@ -181,6 +181,28 @@ const filterByPrice = function(min, max, db) {
   });
 };
 
+// Fetch all products in a category between the minimum and maximum price
+const filterByCategoryAndPrice = function(min, max, category_name, db) {
+  const queryParams = [
+    min,
+    max,
+    category_name
+  ];
+  const queryString = `
+  SELECT products.*, categories.id AS catagory_id, categories.name AS catagory_name
+  FROM products
+  JOIN categories ON categories.id = products.category_id
+  WHERE price <= $2 AND price >= $1
+  AND categories.name LIKE $3
+  ORDER BY price DESC;`;
+
+  return db.query(queryString, queryParams)
+  .then((data) => {
+    console.log(data.rows);
+    return data.rows;
+  });
+};
+
 // Add a new product.
 const addProduct = function(product, db) {
   const queryString = `
@@ -316,7 +338,9 @@ module.exports = {
   getProductById,
   getFavouriteProducts,
   getAllMessages,
+  getAllTexts,
   filterByPrice,
+  filterByCategoryAndPrice,
   addProduct,
   addToFavourites,
   deleteProduct,
