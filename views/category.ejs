@@ -52,8 +52,7 @@
 </form>
 </div>
 
- <% for (item of data) { %>
-  <div class="category-wrapper">
+<% for (item of data) { %>
   <div class="category-container">
 
     <div class="image-container" >
@@ -69,16 +68,19 @@
       </div>
 
       <div class="product-buttons">
-
-        <button class=" btn-block btn product text"type="button"> Favourite item</button>
-        <form method="POST" action="/api/products/<%=item.id%>/delete"><button class=" btn-block btn remove product"type="submit">Delete Product</button></form>
-        <form method="POST" action="/api/products/<%=item.id%>/sold"><button class=" btn-block btn remove product"type="submit">Mark as Sold</button></form>
-        <form method="GET" action="/api/products/new"><button class=" btn-block btn remove product"type="submit">New product</button></form>
-      </div>
-
+        <form method="POST" action="/api/products/<%=item.id%>/favourites"><button class=" btn remove product"type="submit">Add to favourites</button></form>
+        <% if(isAdmin) { %>
+        <form method="POST" action="/api/products/<%=item.id%>/delete"><button class=" btn remove product"type="submit">Delete Product</button></form>
+        <form method="POST" action="/api/products/<%=item.id%>/sold"><button class="btn remove product"type="submit">Mark as Sold</button></form>
+        <form method="GET" action="/api/products/new"><button class="btn remove product"type="submit">New product</button></form>
 
         <% } %>
       </div>
+    </div>
+  </div>
+
+<% } %>
+
     </div>
   </div>
 </div>

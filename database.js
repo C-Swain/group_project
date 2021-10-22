@@ -198,6 +198,7 @@ const filterByCategoryAndPrice = function(min, max, category_name, db) {
 
   return db.query(queryString, queryParams)
   .then((data) => {
+    console.log(data.rows);
     return data.rows;
   });
 };
