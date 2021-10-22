@@ -110,7 +110,7 @@ module.exports = (db) => {
 
     filterByCategoryAndPrice(min, max, category_name, db)
     .then(data => {
-      const templateVars = {data, category: req.params.category, user, isAdmin};
+      const templateVars = {data, category: category_name, user, isAdmin};
 
       res.render("filterPrice", templateVars);
     });
@@ -166,6 +166,7 @@ module.exports = (db) => {
         "You must be an admin to remove items, please contact an admin for assistance"
       );
     }
+    console.log(prodId);
     deleteProduct(prodId, db);
     res.redirect("/api/users/store");
   });

@@ -39,7 +39,9 @@
   </div>
 </form>
 </div>
+
  <% for (item of data) { %>
+
   <div class="category-container">
     <div class="image-container" >
       <img src=<%=item.image_url%>></img>
@@ -56,6 +58,7 @@
         <form method="POST" action="/api/products/<%=item.id%>/delete"><button class=" btn remove product"type="submit">Delete Product</button></form>
         <form method="POST" action="/api/products/<%=item.id%>/sold"><button class="btn remove product"type="submit">Mark as Sold</button></form>
         <form method="GET" action="/api/products/new"><button class="btn remove product"type="submit">New product</button></form>
+
         <% } %>
       </div>
     </div>
