@@ -30,9 +30,6 @@ module.exports = (db) => {
       });
   });
 
-
-
-
 router.get("/login", (req, res) => {
   const templateVars = { user: null };
   res.render("login", templateVars);
@@ -84,11 +81,11 @@ router.post("/register", (req, res) => {
       addUser(user, db)
       getUserByEmail(user.email, db)
       .then (data => {
-       console.log(data.rows[0].id);
+
       req.session.user_id = data.rows[0].id ;
       req.session.user_isAdmin = false;
       req.session.user_name = data.rows[0].name;
-       return res.send('logged in successfully');
+      res.redirect("/");
       })
 })
 
@@ -110,15 +107,15 @@ router.get("/store", (req, res) => {
   });
 
 
+// message route
+router.get("/messages", (req, res) => {
+  getAllTexts(db)
+  .then(data => {
+    res.json(data)
+  })
+})
 
-// we will need a route to log the favourite page . it will take the ID of the user
-// and display things they have addedto favourites
-//router.get("/favourites", (req, res) => {
-  // const userID = req.session.user_id;
-  // const loggedinUser = users[userID];
-  // const templateVars = { user: loggedinUser };
-  //res.render("Favourite");
-// })
+
 
 // the logout route
  router.post('/logout', (req, res) => {
