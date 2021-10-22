@@ -83,6 +83,7 @@ $(() => {
 
 
   $('#texts').on('click', (e) => {
+    console.log('clicked')
     e.preventDefault();
     $.get({
       url: `${BASE_URL}api/users/messages`
