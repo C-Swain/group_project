@@ -189,7 +189,7 @@ const filterByCategoryAndPrice = function(min, max, category_name, db) {
     category_name
   ];
   const queryString = `
-  SELECT products.*, categories.*
+  SELECT products.*, categories.id AS catagory_id, categories.name AS catagory_name
   FROM products
   JOIN categories ON categories.id = products.category_id
   WHERE price <= $2 AND price >= $1
