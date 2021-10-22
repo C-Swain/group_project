@@ -26,29 +26,10 @@
 </head>
 
 <body>
-  <header><%- include('partials/_header') %></header>
-  <div>
-<h2 class="category-h2" > Vintage you need for <%=category%></h2>
-<form method="POST" action='/api/products/filterPrice/<%=category%>'>
 
-  <div class="form-row">
-    <div class="form-group col-md-4">
-      <label for="min">  </label>
-      <input name="min" type="text" class="form-control" id="min" placeholder="Enter Min Price $">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="max">  </label>
-      <input name="max" type="text" class="form-control" id="max" placeholder="Enter Max Price $">
-    </div>
-    <div class="form-group col-md-3">
-      <label>   </label>
 
-        <button type="submit" class="btn btn-outline-secondary" id="search-price">Search</button></form>
+<h2 class="category-h2" > Vintage you need for </h2>
 
-    </div>
-  </div>
-
-</div>
 
 <% for (item of data) { %>
   <div class="category-container">

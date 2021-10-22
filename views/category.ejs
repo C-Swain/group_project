@@ -29,7 +29,7 @@
 
 <body>
   <header><%- include('partials/_header') %></header>
-  <div>
+  <div class="header-input">
 <h2 class="category-h2" > Vintage you need for <%=category%></h2>
 <form method="POST" action='/api/products/filterPrice/<%=category%>'>
 
@@ -45,7 +45,7 @@
     <div class="form-group col-md-3">
       <label>   </label>
 
-        <button type="submit" class="btn btn-outline-secondary" id="search-price">Search</button>
+        <button type="submit" class="btn search btn-outline-secondary" id="search-price">Search</button>
 
     </div>
   </div>
@@ -53,6 +53,7 @@
 </div>
 
  <% for (item of data) { %>
+  <div class="category-wrapper">
   <div class="category-container">
 
     <div class="image-container" >
@@ -68,18 +69,21 @@
       </div>
 
       <div class="product-buttons">
-        <form method="POST" action="/api/products/<%=item.id%>/favourites"><button class=" btn remove product"type="submit">Add to favourites</button></form>
-        <% if(isAdmin) { %>
-        <form method="POST" action="/api/products/<%=item.id%>/delete"><button class=" btn remove product"type="submit">Delete Product</button></form>
-        <form method="POST" action="/api/products/<%=item.id%>/sold"><button class="btn remove product"type="submit">Mark as Sold</button></form>
-        <form method="GET" action="/api/products/new"><button class="btn remove product"type="submit">New product</button></form>
+
+        <button class=" btn-block btn product text"type="button"> Favourite item</button>
+        <form method="POST" action="/api/products/<%=item.id%>/delete"><button class=" btn-block btn remove product"type="submit">Delete Product</button></form>
+        <form method="POST" action="/api/products/<%=item.id%>/sold"><button class=" btn-block btn remove product"type="submit">Mark as Sold</button></form>
+        <form method="GET" action="/api/products/new"><button class=" btn-block btn remove product"type="submit">New product</button></form>
+      </div>
+
 
         <% } %>
       </div>
     </div>
   </div>
-
+</div>
 <% } %>
+
 
 <!-- Bootstrap JS -->
 

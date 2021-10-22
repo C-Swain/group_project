@@ -20,11 +20,44 @@ $(() => {
 
   const $showTexts = (text) => {
     const $txtHtml = `
-      <div class="text-container">
-      <p class="user1">${text[0].content}</p>
-      <p class="seller1">${text[1].content}</p>
-      <p class="user2">${text[2].content}</p>
-      <p class="seller2">${text[3].content}</p>
+
+    <div class="modal">
+      <div class="modal-overylay modal-toggle"></div>
+        <div class="modal-wrapper modal-transition">
+          <div class="modal-header">
+            <button class="modal-close modal-toggle">&times;</button>
+            <h2 class="modal-heading"> Messages</h2>
+          </div>
+          <div class="modal-body">
+            <div class="modal-content">
+              <div class="yours messages">
+                <div class="message">${text[0].content}</div>
+              </div>
+              <div class=" mine messages">
+                <div class="message">${text[1].content}</div>
+              </div>
+              <div class="yours messages">
+                <div class="message">${text[2].content}</div>
+              </div>
+              <div class="mine messages">
+                <div class="message">${text[3].content}</div>
+              </div>
+              <div class="yours messages">
+                <div class="message" id="reply"></div>
+              </div>
+            </div>
+            <div class="modal-footer">
+            <div class="input-group mb-3">
+              <input id="input" type="text" class="form-control" placeholder="Enter message" aria-label="Enter Message" aria-describedby="basic-addon2">
+            </div>
+            <div class="input-group-append">
+              <button id="listen" class="btn btn-outline-secondary" type="button">Send</button>
+            </div>
+          </div>
+          </div>
+        </div
+      </div>
+
       </div>
     `;
 
@@ -56,9 +89,29 @@ $(() => {
       url: `${BASE_URL}api/users/messages`
     })
     .then((data) => {
+
+      $('.messages').empty();
+      $showTexts(data)
+      $('.modal').toggleClass('is-visible');
+
+      $('.input-group-append').on('click', (e) => {
+        e.preventDefault();
+        const textVal = $('#input').val();
+        console.log(textVal);
+        $('#input').val('')
+        $('#reply').html(textVal);
+      })
+
       console.log(data);
       $showTexts(data)
     })
   })
+
+  
+
+  $(document).on('click', '.modal-toggle', (e) => {
+    $('.modal').toggleClass('is-visible');
+  })
+
 
 })
