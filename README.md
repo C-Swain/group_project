@@ -20,7 +20,7 @@ In order for Tinyapp correctly please make sure you have all the dependencies in
 ## Getting Started
 
 - Install all dependencies (using the `npm install` command).
-- Run the development web server using the `node express_server.js` command.
+- Run the development web server using the `npm run local` command.
 - if you run into any difficulties don't hesitate to contact us for more assistance.
 
 
