@@ -9,7 +9,7 @@ Buyers can browser categories and sort by price, they can also add multiple item
 Admins can do even more, they are able to list new products on the page, mark products as sold and delete products.
 
 ## Dependencies
-In order for Tinyapp correctly please make sure you have all the dependencies installed.
+In order for BUY AND SELL correctly please make sure you have all the dependencies installed.
 - Node.js
 - Express
 - EJS
